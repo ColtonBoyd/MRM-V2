@@ -1,0 +1,84 @@
+﻿This Recipe Was Uploaded by the user : <span id="uploaderProfile" onclick="window.location.href='@Url.Action("Profile", "User", new {id = @Model.Uploader.userID})';">@Model.Uploader.userName <img id="uploaderImage" src="../../ProfilePicture/@Model.Uploader.userProfilePicture" /></span>
+<div class="description">
+    <h2>Description</h2>
+    <textarea disabled="disabled">@Model.getRecipe.Recipe_Description</textarea><br>
+</div>
+
+<div id="ing">
+    <br />
+    <h2>Ingredients</h2>
+    <ul>
+
+        @for (int i = 1; i < @Model.getIngredients.Count + 1; i++)
+        {
+
+            <li>
+                @Model.getIngredients[i - 1].measurement @Model.getIngredients[i - 1].measuringVessel @Model.getIngredients[i - 1].ingredientName
+            </li>
+
+
+        }
+
+    </ul>
+
+
+
+</div>
+<br />
+<h2>Instructions</h2>
+<div id="instr">
+    <textarea disabled="disabled">@Model.getRecipe.Instructions</textarea>
+
+
+
+
+</div>
+<div id="meth">
+    @if (@Model.getAppliances.Count > 0)
+    {
+        <h2>Tools Used in this recipe.</h2>
+        <ul>
+
+            @for (int i = 0; i < @Model.getAppliances.Count; i++)
+            {
+                <li>@Model.getAppliances[i].Appliance_Name</li>
+            }
+        </ul>
+    }
+    else
+    {
+
+        <span>There were no tools used in the recipe.</span>
+        <br />
+    }
+    <br />
+
+
+    Cooking Time : @Model.getRecipe.Cooking_Time
+</div>
+<div id="tagsList">
+    @if (@Model.getTags.Count > 0)
+    {
+        <ul>
+            @for (int i = 0; i < @Model.getTags.Count; i++)
+            {
+
+                <li>
+                    @Html.ActionLink((string)@Model.getTags[i].User_Defined_Tag, "Search", "Home", new { id = "recipeTags", term = @Model.getTags[i].User_Defined_Tag_Search }, new { @class = "navbar-brand" })
+                </li>
+
+            }
+        </ul>
+    }
+    else
+    {
+        <br />
+        <span>There were no tags given to this recipe.</span>
+    }
+</div>
+
+<div id="recReportForm">
+
+
+</div>
+

@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="rdbModelStoreContainer" CdmEntityContainer="rdbEntities">
+    <EntitySetMapping Name="Appliances_Used">
+      <EntityTypeMapping TypeName="rdbModel.Appliances_Used">
+        <MappingFragment StoreEntitySet="Appliances_Used">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Appliance_Name" ColumnName="Appliance_Name" />
+          <ScalarProperty Name="Recipe_Id" ColumnName="Recipe_Id" />
+          <ScalarProperty Name="Appliance_Name_Search" ColumnName="Appliance_Name_Search" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppliancesLists">
+      <EntityTypeMapping TypeName="rdbModel.AppliancesList">
+        <MappingFragment StoreEntitySet="AppliancesLists">
+          <ScalarProperty Name="Appliance_Id" ColumnName="Appliance_Id" />
+          <ScalarProperty Name="Appliance_Name" ColumnName="Appliance_Name" />
+          <ScalarProperty Name="Occurances" ColumnName="Occurances" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+          <ScalarProperty Name="Permenant" ColumnName="Permenant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="rdbModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="rdbModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="rdbModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="rdbModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="User_Picture_Path" ColumnName="User_Picture_Path" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Account_Status" ColumnName="Account_Status" />
+          <ScalarProperty Name="Number_Of_Recipes_Per_Page" ColumnName="Number_Of_Recipes_Per_Page" />
+          <ScalarProperty Name="Show_User_Comments" ColumnName="Show_User_Comments" />
+          <ScalarProperty Name="User_Description" ColumnName="User_Description" />
+          <ScalarProperty Name="Roles" ColumnName="Roles" />
+          <ScalarProperty Name="Banned" ColumnName="Banned" />
+          <ScalarProperty Name="Ban_Count" ColumnName="Ban_Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="rdbModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="C__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="rdbModel.Comment">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="Comment_ID" ColumnName="Comment_ID" />
+          <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+          <ScalarProperty Name="Comment1" ColumnName="Comment" />
+          <ScalarProperty Name="Comment_Date" ColumnName="Comment_Date" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dietary_Tags">
+      <EntityTypeMapping TypeName="rdbModel.Dietary_Tags">
+        <MappingFragment StoreEntitySet="Dietary_Tags">
+          <ScalarProperty Name="Special_Tag_ID" ColumnName="Special_Tag_ID" />
+          <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+          <ScalarProperty Name="Special_Dietary_Tags" ColumnName="Special_Dietary_Tags" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ingredients">
+      <EntityTypeMapping TypeName="rdbModel.Ingredient">
+        <MappingFragment StoreEntitySet="Ingredients">
+          <ScalarProperty Name="Recipe_Ingredient_ID" ColumnName="Recipe_Ingredient_ID" />
+          <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+          <ScalarProperty Name="Ingredient_Name" ColumnName="Ingredient_Name" />
+          <ScalarProperty Name="Measurement" ColumnName="Measurement" />
+          <ScalarProperty Name="Ingredient_Name_Search" ColumnName="Ingredient_Name_Search" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IngredientsLists">
+      <EntityTypeMapping TypeName="rdbModel.IngredientsList">
+        <MappingFragment StoreEntitySet="IngredientsLists">
+          <ScalarProperty Name="Ingredient_ID" ColumnName="Ingredient_ID" />
+          <ScalarProperty Name="Ingredient_Name" ColumnName="Ingredient_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invitations">
+      <EntityTypeMapping TypeName="rdbModel.Invitation">
+        <MappingFragment StoreEntitySet="Invitations">
+          <ScalarProperty Name="Invite_Id" ColumnName="Invite_Id" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Liked_Recipes">
+      <EntityTypeMapping TypeName="rdbModel.Liked_Recipes">
+        <MappingFragment StoreEntitySet="Liked_Recipes">
+          <ScalarProperty Name="Liked_Recipe_ID" ColumnName="Liked_Recipe_ID" />
+          <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Date_Liked" ColumnName="Date_Liked" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pictures">
+      <EntityTypeMapping TypeName="rdbModel.Picture">
+        <MappingFragment StoreEntitySet="Pictures">
+          <ScalarProperty Name="Picture_ID" ColumnName="Picture_ID" />
+          <ScalarProperty Name="Picture_Location" ColumnName="Picture_Location" />
+          <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recipes">
+      <EntityTypeMapping TypeName="rdbModel.Recipe">
+        <MappingFragment StoreEntitySet="Recipes">
+          <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+          <ScalarProperty Name="Recipe_Name" ColumnName="Recipe_Name" />
+          <ScalarProperty Name="Recipe_Short_Description" ColumnName="Recipe_Short_Description" />
+          <ScalarProperty Name="Recipe_Description" ColumnName="Recipe_Description" />
+          <ScalarProperty Name="Cooking_Time" ColumnName="Cooking_Time" />
+          <ScalarProperty Name="Recipe_Visibility" ColumnName="Recipe_Visibility" />
+          <ScalarProperty Name="Date_Uploaded" ColumnName="Date_Uploaded" />
+          <ScalarProperty Name="Number_Of_Views" ColumnName="Number_Of_Views" />
+          <ScalarProperty Name="Instructions" ColumnName="Instructions" />
+          <ScalarProperty Name="Display_Picture_Location" ColumnName="Display_Picture_Location" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Recipe_Search_Name" ColumnName="Recipe_Search_Name" />
+          <ScalarProperty Name="Cooking_Time_Search_Name" ColumnName="Cooking_Time_Search_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reports">
+      <EntityTypeMapping TypeName="rdbModel.Report">
+        <MappingFragment StoreEntitySet="Reports">
+          <ScalarProperty Name="Report_Id" ColumnName="Report_Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Comment_Or_Recipe_Id" ColumnName="Comment_Or_Recipe_Id" />
+          <ScalarProperty Name="Reason_For_Report" ColumnName="Reason_For_Report" />
+          <ScalarProperty Name="Content_Creator_Name" ColumnName="Content_Creator_Name" />
+          <ScalarProperty Name="Reporter_Name" ColumnName="Reporter_Name" />
+          <ScalarProperty Name="Content_Creator_Id" ColumnName="Content_Creator_Id" />
+          <ScalarProperty Name="Reporter_Id" ColumnName="Reporter_Id" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Recipe_Name" ColumnName="Recipe_Name" />
+          <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+          <ScalarProperty Name="Comment_ID" ColumnName="Comment_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Security_Questions">
+      <EntityTypeMapping TypeName="rdbModel.Security_Questions">
+        <MappingFragment StoreEntitySet="Security_Questions">
+          <ScalarProperty Name="Security_Question_ID" ColumnName="Security_Question_ID" />
+          <ScalarProperty Name="Security_Question" ColumnName="Security_Question" />
+          <ScalarProperty Name="Security_Answer" ColumnName="Security_Answer" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tagsLists">
+      <EntityTypeMapping TypeName="rdbModel.tagsList">
+        <MappingFragment StoreEntitySet="tagsLists">
+          <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+          <ScalarProperty Name="tag_Name" ColumnName="tag_Name" />
+          <ScalarProperty Name="Occurances" ColumnName="Occurances" />
+          <ScalarProperty Name="start_Date" ColumnName="start_Date" />
+          <ScalarProperty Name="permanant" ColumnName="permanant" />
+          <ScalarProperty Name="AlphaTag" ColumnName="AlphaTag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ThemeGalleries">
+      <EntityTypeMapping TypeName="rdbModel.ThemeGallery">
+        <MappingFragment StoreEntitySet="ThemeGallery">
+          <ScalarProperty Name="Theme_Id" ColumnName="Theme_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="User_Custom_Theme" ColumnName="User_Custom_Theme" />
+          <ScalarProperty Name="Text_Color" ColumnName="Text_Color" />
+          <ScalarProperty Name="Background_Color" ColumnName="Background_Color" />
+          <ScalarProperty Name="Contrast_Box_Background_Color" ColumnName="Contrast_Box_Background_Color" />
+          <ScalarProperty Name="Background_Image" ColumnName="Background_Image" />
+          <ScalarProperty Name="Background_Box_Color" ColumnName="Background_Box_Color" />
+          <ScalarProperty Name="Background_Box_Opacity" ColumnName="Background_Box_Opacity" />
+          <ScalarProperty Name="Background_Color_Opacity" ColumnName="Background_Color_Opacity" />
+          <ScalarProperty Name="Contrast_Box_Background_Color_Opacity" ColumnName="Contrast_Box_Background_Color_Opacity" />
+          <ScalarProperty Name="Background_Image_Color_Or_Theme" ColumnName="Background_Image_Color_Or_Theme" />
+          <ScalarProperty Name="Input_Color" ColumnName="Input_Color" />
+          <ScalarProperty Name="Input_Opacity" ColumnName="Input_Opacity" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Permenant" ColumnName="Permenant" />
+          <ScalarProperty Name="Hr_Color" ColumnName="Hr_Color" />
+          <ScalarProperty Name="Logo_Facebook" ColumnName="Logo_Facebook" />
+          <ScalarProperty Name="Logo_Twitter" ColumnName="Logo_Twitter" />
+          <ScalarProperty Name="Logo_Reddit" ColumnName="Logo_Reddit" />
+          <ScalarProperty Name="Logo_BitBucket" ColumnName="Logo_BitBucket" />
+          <ScalarProperty Name="Logo_Main" ColumnName="Logo_Main" />
+          <ScalarProperty Name="Logo_Info" ColumnName="Logo_Info" />
+          <ScalarProperty Name="Theme_Icon_Path" ColumnName="Theme_Icon_Path" />
+          <ScalarProperty Name="Logo_Save" ColumnName="Logo_Save" />
+          <ScalarProperty Name="Logo_Garbage" ColumnName="Logo_Garbage" />
+          <ScalarProperty Name="Arrow_Left" ColumnName="Arrow_Left" />
+          <ScalarProperty Name="Arrow_Right" ColumnName="Arrow_Right" />
+          <ScalarProperty Name="Arrow_Up" ColumnName="Arrow_Up" />
+          <ScalarProperty Name="Arrow_Down" ColumnName="Arrow_Down" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Defined_Tags">
+      <EntityTypeMapping TypeName="rdbModel.User_Defined_Tags">
+        <MappingFragment StoreEntitySet="User_Defined_Tags">
+          <ScalarProperty Name="Tag_ID" ColumnName="Tag_ID" />
+          <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+          <ScalarProperty Name="User_Defined_Tag" ColumnName="User_Defined_Tag" />
+          <ScalarProperty Name="User_Defined_Tag_Search" ColumnName="User_Defined_Tag_Search" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserOptions">
+      <EntityTypeMapping TypeName="rdbModel.UserOption">
+        <MappingFragment StoreEntitySet="UserOptions">
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Search_Visibility" ColumnName="Search_Visibility" />
+          <ScalarProperty Name="Recipes_Per_Page" ColumnName="Recipes_Per_Page" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="rdbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

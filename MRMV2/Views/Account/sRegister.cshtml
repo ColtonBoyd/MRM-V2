@@ -1,0 +1,92 @@
+﻿@model IDTEST.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+<div class="accountPages">
+    <h2>@ViewBag.Title.</h2>
+
+    @using (Html.BeginForm("sRegister", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Create a new account.</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Security_Question_Answer_1, new { @class = "col-md-2 control-label" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(m => m.Security_Question_Answer_1, new { @class = "form-control" })
+            </div>
+            <div class="col-sm-3">
+                @Html.DropDownListFor(m => m.Security_Question_1, new List<SelectListItem>() {
+                new SelectListItem() { Text= "First Pets Name", Value = "First Pets Name" },
+                new SelectListItem() { Text= "Mother's Maiden Name", Value = "Mother's Maiden Name"},
+                new SelectListItem() { Text= "Father's Middle Name", Value = "Father's Middle Name" },
+                new SelectListItem() { Text= "Mother's Middle Name", Value = "Mother's Middle Name" },
+                new SelectListItem() { Text= "First School", Value = "First School" },
+                new SelectListItem() { Text= "Favourite Park", Value = "Favourite Park" }
+            }, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Security_Question_Answer_2, new { @class = "col-md-2 control-label" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(m => m.Security_Question_Answer_2, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.DropDownListFor(m => m.Security_Question_2, new List<SelectListItem>() {
+                new SelectListItem() { Text= "Favorite Passtime", Value = "Favorite Passtime" },
+                new SelectListItem() { Text= "First Vehicle", Value = "First Vehicle"},
+                new SelectListItem() { Text= "Name of Highschool you attended", Value = "Name of Highschool you attended" },
+                new SelectListItem() { Text= "Grandmother's Middle Name", Value = "Grandmother's Middle Name" },
+                new SelectListItem() { Text= "Grandfather's Middle Name", Value = "Grandfather's Middle Name" },
+                new SelectListItem() { Text= "Favourite Subject", Value = "Favourite Subject" }
+            }, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Security_Question_Answer_3, new { @class = "col-md-2 control-label" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(m => m.Security_Question_Answer_3, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.DropDownListFor(m => m.Security_Question_3, new List<SelectListItem>() {
+                new SelectListItem() { Text= "Favourite Food", Value = "Favourite Food" },
+                new SelectListItem() { Text= "Favourite Color", Value = "Favourite Color"},
+                new SelectListItem() { Text= "Name of Childhood best friend", Value = "Name of Childhood best friend" },
+                new SelectListItem() { Text= "Favourite Animal", Value = "Favourite Animal" },
+                new SelectListItem() { Text= "City You Grew Up In", Value = "City You Grew Up In" },
+                new SelectListItem() { Text= "Favourite Teacher", Value = "Favourite Teacher" }
+            }, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Register" />
+            </div>
+        </div>
+    }
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

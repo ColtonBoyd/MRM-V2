@@ -1,0 +1,360 @@
+﻿@model MRMV2.Models.RecipePageModel
+@{
+    ViewBag.Title = Model.getRecipe.Recipe_Name;
+
+
+}
+
+
+<style>
+    .cycle-paused:after {
+        content: 'Slideshow Paused';
+        color: white;
+        background: black;
+        padding: 10px;
+        z-index: 500;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border-radius: 10px;
+        opacity: .5;
+        filter: alpha(opacity=50);
+    }
+
+    #removeComment {
+        padding-right: 1%;
+        float: right;
+        padding-top: 1%;
+    }
+
+
+
+        #removeComment img {
+            width: 35px;
+            top: 35%;
+        }
+
+
+    body {
+        width: 100%;
+        color: white;
+    }
+
+    #uploaderProfile {
+        color: blue !important;
+        cursor: pointer;
+    }
+
+    #uploaderImage {
+        width: 25px;
+    }
+
+    #topBar a:hover {
+        color: white;
+    }
+
+    .ui-dialog-titlebar, #recReportForm
+    {
+        border:none;
+
+    }
+
+    table {
+        width: 100%;
+    }
+
+    td {
+        padding-right: 5%;
+    }
+
+    .report {
+        float: right;
+        margin-right: 3%;
+    }
+
+    .Comments {
+        width: 95%;
+        background-color: rgba(0, 0, 0, 0.5);
+        margin-right: 10px;
+        word-wrap: break-word;
+        min-height: 77px;
+        margin-bottom: 15px;
+        position: relative;
+    }
+
+        .Comments a {
+            cursor: pointer;
+            position: absolute;
+            right: -20px;
+            top: 0px;
+        }
+
+    .cycle-slideshow {
+        float: right;
+        width: 50%;
+    }
+
+    .cycle-slide {
+        height: 100%;
+    }
+
+    #commentForm {
+        margin-bottom: 25px;
+    }
+
+    .body-content {
+        padding: 15px;
+        border-radius: 15px;
+        position: relative;
+        max-width: 80%;
+        width: 80%;
+    }
+
+    #Information {
+        width: 49%;
+    }
+
+    #recipeInformationArea {
+        min-height: 500px;
+    }
+
+    #comment {
+        max-width: 55%;
+        width: 55%;
+        resize: none;
+        border-radius: 5px;
+        padding-right: 7%;
+    }
+
+
+    #commentarea span {
+        width: 91%;
+        display: block;
+        padding-left: 90px;
+        padding-bottom: 15px;
+    }
+
+    #commentarea {
+        overflow-y: scroll;
+        width: 55%;
+        margin-bottom: 10px;
+    }
+
+        #commentarea::-webkit-scrollbar {
+            width: 12px;
+            padding-left: 200px;
+        }
+
+        #commentarea::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+
+        #commentarea::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+        }
+
+
+
+    #ing ul, #meth ul {
+        display: inline;
+        list-style-type: none;
+        width: 100%;
+    }
+
+
+    #ing li, #meth li {
+        float: left;
+        padding-right: 5%;
+    }
+
+
+    #instr ul {
+        list-style-type: none;
+        padding-left: 0px;
+    }
+
+    #instr li {
+        overflow-wrap: break-word;
+    }
+
+    #spaceit {
+        margin-top: 10px;
+        clear: both;
+        margin-bottom: 0px;
+    }
+
+
+    #likeSaveReport img {
+        width: 20px;
+    }
+
+    #likeSaveReport span, #likeSaveReport a {
+        float: right;
+        cursor: pointer;
+        padding-right: 15px;
+    }
+
+
+
+    #postMessage {
+        margin-top: 1.8%;
+        border-radius: 2px;
+        z-index: 99;
+        position: absolute;
+        left: 49.5%;
+        border: none;
+        background-color:inherit;
+    }
+
+    #progress {
+        position: absolute;
+        bottom: 0;
+        height: 3px;
+        width: 0px;
+        background-color: rgba(255, 255, 255, 0.5);
+        z-index: 500;
+    }
+
+    .commentImg {
+        height: 75px;
+        width: 75px;
+        margin-right: 15px;
+        float: left;
+    }
+
+
+
+    .cycle-slideshow img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 0;
+        display: block;
+    }
+
+
+    #tagsList ul {
+        list-style-type: none;
+        padding-left: 0px;
+    }
+
+        #tagsList ul li {
+            float: left;
+            margin-right: 10px;
+        }
+
+    #recipeBody {
+        padding: 15px;
+        border-radius: 15px;
+        position: relative;
+    }
+
+
+    .saveIcon {
+        float: right;
+        padding-top: 3px;
+    }
+
+    #OtherText {
+        max-width: 100%;
+        width: 100%;
+        height: 215px;
+        resize: none;
+    }
+
+
+    .ui-widget-overlay {
+        height: 155%;
+    }
+
+
+
+
+    textarea {
+        margin: 0px;
+        width: 100% !important;
+        max-width: inherit;
+        border: none;
+        background-color: inherit;
+        resize: none;
+        color: inherit;
+    }
+</style>
+
+<div id="recipeBody">
+    <h2>@Model.getRecipe.Recipe_Name</h2>
+    @Model.getRecipe.Recipe_Name 
+
+
+    <hr />
+
+    <div id="recipeInformationArea">
+
+        @{Html.RenderPartial("DisplayPicture");}
+        <div id="Information">
+            @{Html.RenderPartial("Information");}
+        </div>
+    </div>
+    @{Html.RenderPartial("Comments");}
+
+</div>
+<script>
+
+    $(document).ready(function () {
+
+
+
+        //Get the height for the recipe information
+        var getHtml = $(".description textarea").html();
+        var getHeight = "<div class='tareaHeight' style='position:absolute; left:-200%; width:500px;'>" + getHtml + "</div>";
+        getHeight = getHeight.replace(/\n/g, '<br>')
+        $("body").append(getHeight);
+        $(".description textarea").css("height", $(".tareaHeight").height() + 10)
+        $(".tareaHeight").remove();
+
+
+
+        var getHtml = $("#instr textarea").html();
+        var getHeight = "<div class='tareaHeight' style='position:absolute; left:-200%; width:500px;'>" + getHtml + "</div>";
+        getHeight = getHeight.replace(/\n/g, '<br>')
+        $("body").append(getHeight);
+        $("#instr textarea").css("height", $(".tareaHeight").height() + 10)
+        $(".tareaHeight").remove();
+
+        var progress = $('#progress'),
+            slideshow = $('.cycle-slideshow');
+
+
+        //Set slideshow animations
+        slideshow.on('cycle-initialized cycle-before', function (e, opts) {
+            progress.stop(true).css('width', 0);
+        });
+
+        slideshow.on('cycle-initialized cycle-after', function (e, opts) {
+            if (!slideshow.is('.cycle-paused'))
+                progress.animate({ width: '100%' }, opts.timeout, 'linear');
+        });
+
+        slideshow.on('cycle-paused', function (e, opts) {
+            progress.stop();
+        });
+
+        slideshow.on('cycle-resumed', function (e, opts, timeoutRemaining) {
+            progress.animate({ width: '100%' }, timeoutRemaining, 'linear');
+        });
+
+
+
+
+
+
+
+
+    });
+
+
+
+</script>

@@ -1,0 +1,124 @@
+﻿@model MRMV2.Models.LandingPageModel
+@using MRMV2.Models;
+@{
+    ViewBag.Title = "My Recipe Manager";
+}
+<link rel="stylesheet" href="~/Css/HomeMain.css" />
+
+<style>
+    hr {
+        border-top: 3px solid #eeeeee;
+    }
+
+    #bottom {
+        position: absolute;
+        bottom: 1%;
+        left: 10%;
+        width: 80%;
+        text-align: center;
+    }
+
+        #bottom img {
+            width: 50px;
+            margin-right: 1%;
+        }
+
+
+    #slideshow img {
+        display: none;
+    }
+
+        #slideshow img.first {
+            display: block;
+        }
+
+
+    #newsSection {
+        background-color: black;
+        width: 90%;
+        height: 100%;
+        float: right;
+    }
+
+
+
+
+    #newsContainer {
+        width: 30%;
+        height: 450px;
+        float: right;
+    }
+
+
+        #newsContainer h3 {
+            padding-left: 10%;
+        }
+
+
+    #hotContainer {
+        width: 70%;
+        height: 450px;
+        float: left;
+        position: relative;
+    }
+
+    .container {
+        height: 100%;
+    }
+
+
+
+    #recentContainer {
+        width:100%;
+    }
+
+        #recentSection {
+        background-color: black;
+        width: 100%;
+        height: 210px;
+    }
+
+
+        #firstSection
+        {
+            height: 510px;
+        }
+
+
+</style>
+<div id="firstSection">
+    <div id="hotContainer">
+        <h3>What's Hot</h3>
+        @{Html.RenderPartial("DisplayPicture");}
+    </div>
+
+    <div id="newsContainer">
+        <h3>News</h3>
+        @{Html.RenderPartial("DisplayNews");}
+    </div>
+</div>
+<div>
+    <div id="recentContainer">
+        <h3>Recent Upload</h3>
+        @{Html.RenderPartial("DisplayRecent");}
+    </div>
+</div>
+<script type="text/javascript">
+
+
+    $(".cycle-slideshow img").css("height", "100%");
+
+    //If a message was passed display it
+    if ('@ViewBag.Message' != "")
+        toast('@ViewBag.Message', 2000)
+
+
+
+
+</script>
+
+
+
+
+
+

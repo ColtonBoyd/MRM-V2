@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/jquery.cycle2.js"></script>
+    <script src="~/Scripts/jquery.cycle2.tile.js"></script>
+    <script src="~/Scripts/jquery.cycle2.caption2.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {
+            background-image: url("../../Backgrounds/MRMBlue.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+
+      
+
+
+        .Logo {
+            display: block;
+            width: 150px;
+            height: 150px;
+            text-indent: -9999px;
+            background-size: cover;
+        }
+
+
+
+        #Load {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            background-color: rgba(9, 9, 211, 1);
+        }
+
+            #Load #cube {
+                position: absolute;
+                top: 36%;
+                right: 44.4%;
+            }
+
+            #Load #text {
+                position: absolute;
+                top: 49%;
+                right: 42.4%;
+            }
+
+
+
+    </style>
+</head>
+
+<body style="padding-top:0px;">
+    <div id="Load"><img id="cube" src="~/Icons/load.gif" /><img id="text" src="~/Icons/loading.gif" /></div>
+
+    <div class="masthead clearfix" id="topBar">
+        <div class="container">
+            <div class="navbar-header" id="navHead">
+
+                @Html.ActionLink("My Recipe Manager", "Index", "Home", new { area = "" }, new { @class = "navbar-brand Logo" })
+            </div>
+
+            @Html.Partial("_LoginPartial")
+
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>
+
+
+
+
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+
+        $("#Load").css("visibility", "hidden");
+        //$("#navHead").
+
+    })
+
+
+
+    @*$(window).load(function () {
+
+        
+        //Load all user custom setting, If there is not a user signed in a default value is passed.
+         
+        var backgroundImageRaw = '@Html.Action("getBackground", "User")';
+        var backgroundImage = backgroundImageRaw.split('!!!###');
+
+        var textColor = "@Html.Action("getTextColor", "User")";
+
+        var getHrColor = "@Html.Action("getHrColor", "User")";
+
+        var inputBoxColorRaw = "@Html.Action("getInputColor", "User")";
+        var inputBoxColor = inputBoxColorRaw.split('!!!###');
+
+
+
+        var getIconsRaw = '@Html.Action("getIcons", "User")';
+        var getIcons = getIconsRaw.split('!!!###');
+
+
+        var getLogo = '@Html.Action("getLogo", "User")';
+
+        var getTip = '@Html.Action("getTip", "User")';
+
+        var getSave = '@Html.Action("getSave", "User")';
+
+        var getTrash = '@Html.Action("getTrash", "User")';
+
+        var navBarIcon = '@Html.Action("getImg", "User")';
+
+        $("#navBar img").prop("src","../../../ProfilePicture/"+navBarIcon);
+
+        if (backgroundImage.length == 1) {
+            $('body').css("background-image", "url('" + backgroundImage[0] + "')")
+
+        }
+        else {
+            R = hexToR(backgroundImage[0]);
+            G = hexToG(backgroundImage[0]);
+            B = hexToB(backgroundImage[0]);
+            $('body').css("background-color", "rgba(" + R + "," + G + "," + B + "," + backgroundImage[1] + ")")
+
+        }
+
+
+
+
+        R = hexToR(inputBoxColor[0]);
+        G = hexToG(inputBoxColor[0]);
+        B = hexToB(inputBoxColor[0]);
+
+        $('#usrProfile input[type=text], #searchPage input[type=text], #searchPage select, #mainForm input[type=text],#comment,  #Description, #Instructions, #mainContent .opacity').css("background-color", "rgba(" + R + "," + G + "," + B + "," + inputBoxColor[1] + ")")
+        $('#gallery').css("background-color", "rgba(" + R + "," + G + "," + B + "," + inputBoxColor[1] + ") !important")
+        $('#galleryWindow').css("background-color", "rgba(" + R + "," + G + "," + B + "," + inputBoxColor[1] + ") !important")
+        $('#imageUpload').css("background-color", "rgba(" + R + "," + G + "," + B + "," + inputBoxColor[1] + ") !important")
+
+
+
+
+        $("hr").css("color", getHrColor);
+
+
+
+        $('#mainForm input[type=text],#mainForm textarea, #searchPage, #mainForm span, #topBar, #userProfilePage span, #userProfilePage ul, #usrProfile, #recipeBody, a, p, h1, h2, h3, h4, h5, h6, label, #admin-container').css("color", "" + textColor + "");
+
+
+        var activeColorRaw = '@Html.Action("activeColor", "User")';
+        var activeColor = activeColorRaw.split('!!!###');
+        R = hexToR(activeColor[0]);
+        G = hexToG(activeColor[0]);
+        B = hexToB(activeColor[0]);
+        $("#mainForm").each(function () {
+            $(this).css("background-color", "rgba(" + R + "," + G + "," + B + "," + activeColor[1] + ")");
+        });
+        $("#recReportForm").closest(".ui-dialog").css("background-color", "rgba(" + R + "," + G + "," + B + ",1)");
+
+        //$("#mainContent").css("background-color", "rgba(" + R + "," + G + "," + B + "," + activeColor[1] + ")");
+
+        $("#userDropDown,#recipeBody, .Logo, #bodyContents, #mainContent, #searchDiv, #dialog, .background_color").css("background-color", "rgba(" + R + "," + G + "," + B + "," + activeColor[1] + ")");
+        //$("#mainForm div").each(function () {
+        //$(this).css("background-color", "rgba(" + R + "," + G + "," + B + "," + activeColor[1] + ")");
+        //});
+        $("#firstPage, #secondPage, #thirdPage, #fourthPage, #fifthPage, #sixthPage").css("background-color", "rgba(" + R + "," + G + "," + B + "," + activeColor[1] + ")");
+
+
+        //$("#gallery").css("background-color", "#70C1B3 !important");
+        //$("#mainContent").css("background-color", "rgba(" + R + "," + G + "," + B + "," + activeColor[1] + ")");
+        //$("#dialog").css("background-color", "rgba(" + R + "," + G + "," + B + "," + activeColor[1] + ")");
+        //$(".background_color").css("background-color", "rgba(" + R + "," + G + "," + B + "," + activeColor[1] + ")");
+        // }
+
+
+
+
+        //bfrt
+        $("#bottom img:nth-of-type(1)").prop("src", getIcons[0])
+        $("#bottom img:nth-of-type(2)").prop("src", getIcons[1])
+        $("#bottom img:nth-of-type(3)").prop("src", getIcons[2])
+        $("#bottom img:nth-of-type(4)").prop("src", getIcons[3])
+
+        $(".Logo").css("background-image", "url(" + getLogo + ")");
+
+//        $(".tip img").css("src", getTip);
+
+        $(".saveIcon").prop("src", getSave);
+
+        $(".trashCan").prop("src", getTrash)
+
+        $(".tip img, .tip").each(function(){
+            $(this).prop("src", getTip);
+        })
+
+
+
+
+
+        function hexToR(h) { return parseInt((cutHex(h)).substring(0, 2), 16) }
+        function hexToG(h) { return parseInt((cutHex(h)).substring(2, 4), 16) }
+        function hexToB(h) { return parseInt((cutHex(h)).substring(4, 6), 16) }
+        function cutHex(h) { return (h.charAt(0) == "#") ? h.substring(1, 7) : h }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //PRESET 1
+
+
+        $("#mainForm div").each(function () {
+
+        });
+
+    });*@
+</script>

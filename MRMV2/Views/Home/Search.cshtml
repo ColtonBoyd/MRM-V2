@@ -1,0 +1,927 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+}
+
+<style type="text/css">
+    html {
+        height: 100%;
+    }
+
+    #dialog {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .pageNumbers {
+        list-style-type: none;
+        clear: both;
+        bottom: 0px;
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+    }
+
+        .pageNumbers li {
+            display: inline-block;
+            padding-left: 6px;
+        }
+
+    #recLoad {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        display: none;
+        background-image: none;
+    }
+
+    body {
+        color: white;
+        padding-top: 0px;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .container {
+        padding: 0px;
+    }
+
+    .body-content {
+        margin: 0px;
+        max-width: inherit;
+        height: 100%;
+    }
+
+    .navbar-brand {
+        padding: 0px;
+    }
+
+    #searchDiv ul {
+        list-style-type: none;
+        padding-left: 10px;
+    }
+
+    #searchDiv {
+        float: left;
+        padding-top: 165px;
+        min-width: 225px;
+        width: 10%;
+    }
+
+
+
+    #search {
+        width: 70%;
+    }
+
+    #viewTags {
+        cursor: pointer;
+    }
+
+
+
+    .Grid {
+        list-style-type: none;
+        padding: 0px;
+        padding-left: 1.4%;
+    }
+
+    .gridList {
+        width: 33%;
+        text-align: center;
+        float: left;
+        min-width: 453px;
+        padding-bottom: 10px;
+    }
+
+
+    .gridListUsers {
+        width: 33%;
+        text-align: center;
+        float: left;
+        min-width: 450px;
+    }
+
+    #Tags {
+        width: 100%;
+        height: 90%;
+        overflow-y: scroll;
+    }
+
+    a:hover {
+        text-decoration:none;
+        color:inherit;
+    }
+
+
+
+    .recipeResult {
+        text-align: center;
+        opacity: 0.5;
+        border-radius: 10px;
+        overflow: hidden;
+        height: 400px;
+        cursor: pointer;
+        width: 97%;
+    }
+
+
+        .recipeResult:hover {
+            opacity: 1.0;
+        }
+
+        .recipeResult img {
+            width: 95%;
+            margin-left: 2.5%;
+            margin-right: 2.5%;
+            max-width: 554px;
+            max-height: 229px;
+        }
+
+    #bodyContents {
+        float: left;
+        max-width: 85%;
+        width: 83%;
+        margin-top: 2.8%;
+        margin-left: 1%;
+        border-radius: 10px;
+        position: relative;
+    }
+
+
+    ::-webkit-scrollbar {
+        width: 12px;
+        padding-left: 200px;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
+
+    #sortlist {
+        text-align: center;
+    }
+
+
+        #sortlist span {
+            padding-left: 10px;
+            text-decoration: underline;
+        }
+
+            #sortlist span:hover {
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+
+
+    .active {
+        border-bottom: 3px solid white;
+        font-weight: bold;
+    }
+
+    .activerec {
+        font-weight: bold;
+    }
+
+
+
+    .ui-dialog {
+        left: 4.5%;
+        top: 2%;
+    }
+
+
+
+    #noResult {
+        text-align: center;
+        list-style: none;
+        padding: 0px;
+        font-weight: bold;
+        font-size: large;
+    }
+
+    .navbar-header {
+        position: absolute;
+        padding-left: 15px;
+    }
+
+    .offPage {
+        overflow: hidden !important;
+        position: absolute !important;
+        left: -200% !important;
+    }
+
+    .tagList {
+        display: inline-block;
+        margin-right: 2%;
+    }
+
+
+    #Tags h2 {
+        margin-top: 40px;
+        margin-bottom: 0px;
+    }
+
+    #dialog span {
+        float: left;
+    }
+
+    #dialog div:first-child {
+        text-align: center;
+    }
+
+    #dialog input[type=button] {
+        float: right;
+        margin-right: 15px;
+    }
+
+    #chosenTags {
+        width: 80%;
+        float: left;
+        overflow-y: scroll;
+        height: 8%;
+    }
+
+        #chosenTags span {
+            margin-left: 10px;
+        }
+
+
+
+    .suggestion {
+        margin-right: 20px;
+    }
+
+
+    #recLoad #cube {
+        position: absolute;
+        top: 36%;
+        right: 44.4%;
+    }
+
+    #recLoad #text {
+        position: absolute;
+        top: 49%;
+        right: 42.4%;
+    }
+
+
+
+    select {
+        width: 70%;
+        text-align-last: center;
+    }
+
+
+    #toast {
+        min-height: 0px !important;
+        text-align: center !important;
+        color: white !important;
+    }
+
+
+    .toastStyle {
+        border-radius: 20px !important;
+        top: 93% !important;
+        padding: 0px !important;
+        z-index:9999;
+    }
+
+    .Logo {
+        background-color: transparent !important;
+    }
+
+    .tip img {
+        width: 25px;
+        margin-right: 5px;
+    }
+</style>
+<div class="navbar-header">
+    @Html.ActionLink("My Recipe Manager", "Index", "Home", new { area = "" }, new { @class = "navbar-brand Logo" })
+</div>
+<div id="searchPage">
+    <div id="searchDiv">
+        <ul>
+            <li><input type="text" id="search" value="@ViewBag.term" /><input type="button" value="Search" id="searchButton" /></li>
+            <li>
+                <select>
+                    <option selected disabled>--Search For--</option>
+                    <option value="users">Users</option>
+                    <option value="recipeName">Name of recipe</option>
+                    <option value="recipeTags">Tags on recipe</option>
+                    <option value="recipePrep">Recipe Preperation Time</option>
+                    <option value="ingredients">Ingredients</option>
+                    <option value="toolsUsed">Appliances Used</option>
+                </select>
+            </li>
+            <li><span id="viewTags">View Tags</span></li>
+            <li><span id="randomRecipe"><a href="window.location.href = '../../../Recipes/RecipeID/@Html.Action("getRandomRow", "User")">Random Recipe</a></span></li>
+
+            <li><br /><br /></li>
+            <li class="tip"><img />When searching add an underscore(_) in between words for the best results. Example: 12_Minutes, Pumpkin_Pie</li>
+
+        </ul>
+    </div>
+
+    <div id="recLoad"><img id="cube" src="~/Icons/load.gif" /><img id="text" src="~/Icons/loading.gif" /></div>
+
+
+    <div id="bodyContents">
+        
+        <div id="dynamicContent"></div>
+
+    </div>
+
+    <div id="dialog" title="Tags ">
+        <div style="position: absolute; top: 15px; left: 36%;">
+
+        </div>
+        <span>Tags to add: </span>
+        <div id="chosenTags"></div>
+        <input type="button" id="addTags" value="Add these tags" />
+    </div>
+
+</div>
+
+<script>
+
+    var section = "";
+    var h = window.outerHeight;
+    var list = "";
+    $('#bodyContents').addClass("offPage");
+
+
+    //Convert hex values to rgb
+    function hexToR(h) { return parseInt((cutHex(h)).substring(0, 2), 16) }
+    function hexToG(h) { return parseInt((cutHex(h)).substring(2, 4), 16) }
+    function hexToB(h) { return parseInt((cutHex(h)).substring(4, 6), 16) }
+    function cutHex(h) { return (h.charAt(0) == "#") ? h.substring(1, 7) : h }
+
+    //Get the color for the contrast boxes
+    var contrastBoxColorRaw = '@Html.Action("getContrastColor", "User")';
+    var contrastBoxColor = contrastBoxColorRaw.split('!!!###');
+
+    R = hexToR(contrastBoxColor[0]);
+    G = hexToG(contrastBoxColor[0]);
+    B = hexToB(contrastBoxColor[0]);
+    var colors = "rgba(" + R + "," + G + "," + B + "," + contrastBoxColor[1] + ") !important";
+
+    $(document).ready(function () {
+
+        //On enter key press when the search box is focussed
+        $("#search").keypress(function (event) {
+
+            if (event.which == 13)
+                search('', '1')
+        });
+
+
+
+        
+        //Experimental auto search for previous search when the search page is left and returned to
+        switch ('@ViewBag.id') {
+            case "recipeTags":
+                section = "recipeTags";
+                $("select option:nth-of-type(4)").prop("selected", true);
+                break;
+            case "users":
+                section = "users";
+                $("select option:nth-of-type(2)").prop("selected", true);
+                break;
+            case "recipeName":
+                section = "recipeName";
+                $("select option:nth-of-type(3)").prop("selected", true);
+                break;
+            case "recipePrep":
+                section = "recipePrep";
+                $("select option:nth-of-type(5)").prop("selected", true);
+                break;
+            case "ingredients":
+                section = "ingredients";
+                $("select option:nth-of-type(6)").prop("selected", true);
+                break;
+            case "toolsUsed":
+                section = "toolsUsed";
+                $("select option:nth-of-type(7)").prop("selected", true);
+                break;
+
+            default: section = "all"; 
+                $("select option:nth-of-type(1)").prop("selected", true);
+                break; break;
+        };
+
+
+        $('#bodyContents').css("min-height", (window.innerHeight - (window.innerHeight * .1)));
+        $("#topBar").html("");
+
+        search('', 1);
+
+
+
+        //Set the current search section
+        $("select").on("change", function () {
+            section = $(this).val()
+        })
+
+
+
+
+
+
+
+
+
+
+
+        var bodyCont;
+
+
+
+        var width = ((window.innerWidth) * .9);
+
+        //Create a dialog for tags
+        $("#dialog").dialog({
+            modal: true,
+            width: width + "px",
+            position: 'center',
+            autoOpen: false,
+            create: function () {
+                $(".ui-dialog-titlebar").remove()
+                $(".ui-dialog").css("padding", "0px")
+                $("#dialog").css({
+                    "padding-right": "0px",
+                    "overflow": "hidden",
+                    "height": "100% !important",
+                    "width": width + "px"
+                });
+            }
+
+        });
+
+
+
+        //Get a list of tags and add them to the dialog
+        $.ajax({
+            type: "POST",
+            url: "/Home/getTags",
+            data: "",
+            datatype: "html",
+            success: function (data) {
+                $("<div id='Tags'>").insertBefore("#dialog span")
+
+                $("#Tags").append("<h2 id='" + data[0].tag_Name + "'>" + data[0].tag_Name + "</h2>");
+                for (var t = 1; t < data.length; t++) {
+
+                    if (data[t].AlphaTag != 1)
+                        $("#Tags").append("<div id=\"" + data[t].tag_Name + "\" >" + data[t].tag_Name + "</div>");
+                    else
+                        $("#Tags").append("<br/><h2 id='" + data[t].tag_Name + "'>" + data[t].tag_Name + "</h2>");
+                }
+
+
+
+                $("#Tags div").addClass("tagList")
+
+
+            }
+        });
+
+
+
+
+    })
+
+    //On click of the viewtags button  a dialog that contains all tags opens
+    $("#viewTags").on('click', function () {
+
+
+        $("#dialog").dialog("open");
+        $(".ui-dialog").css("height", "80%");
+
+
+
+
+
+    })
+
+
+    
+
+
+    //On tag click add it to the list of tags
+    $("body").on("click", "#Tags div", function () {
+        if (list.indexOf(this.id) == -1) {
+            $("#chosenTags").append("<span>" + this.id + "</span>");
+            list += this.id + " "
+        }
+
+    })
+
+    //The search method. This method gets the section being searched as well as the words and passes them to the server. The server will respond with all of the values which this method will append to the results area.
+    //orderBy holds the order chosen if any.
+    //pageNo lets the server know which records it should be pulling
+    function search(orderBy, pageNo) {
+        var input = $('#search').val();
+        if ((input.substring(input.length - 1, input.length)) == " ")
+            input = input.substring(0, input.length - 1);
+        var page = pageNo;
+        var lastsearched
+        $("#recLoad").css("display", "block");
+
+
+
+        $('#bodyContents').removeClass("offPage");
+
+        $("#dynamicContent").html("");
+
+
+        var Search;
+        $(".pageNumbers").remove();
+
+        //If any order was chosen
+        switch (orderBy) {
+            case "AtoZ": Search = { "searchString": input, "tag": "AtoZ", "section": section, "page": page }; break;
+            case "ZtoA": Search = { "searchString": input, "tag": "ZtoA", "section": section, "page": page }; break;
+            case "Popular": Search = { "searchString": input, "tag": "Popular", "section": section, "page": page }; break;
+            case "Date": Search = { "searchString": input, "tag": "DateA", "section": section, "page": page }; break;
+            case "DateD": Search = { "searchString": input, "tag": "DateD", "section": section, "page": page }; break;
+            case "": Search = { "searchString": input, "tag": "", "section": section, "page": page }; break;
+        }
+
+
+
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/SearchRecipes",
+            data: Search,
+            datatype: "html",
+            success: function (data) {
+
+                var pic;
+                var name;
+                var desc;
+                var rid;
+                bodyCont = $("*").html();
+
+
+
+                if (section === "recipeName" && input != "") {
+                    if (data.sortRecipeName != null)
+                        if (data.sortRecipeName.length > 0) {
+
+
+                            $('#dynamicContent').html("<div id=\"sortlist\">Sort By <span onclick=\"search('AtoZ')\">A-Z</span>    <span onclick=\"search('ZtoA')\">Z-A         </span>    <span onclick=\"search('Popular')\">Popular         </span>    <span onclick=\"search('Date')\">Date Uploaded Ascending        </span><span onclick=\"search('DateD')\">Date Uploaded Descending        </span></div>");
+                            $('#dynamicContent').append("<ul class=\"Grid\">");
+
+                            for (var i = 0; i < data.sortRecipeName.length; i++) {
+                                name = data.sortRecipeName[i].Recipe_Name;
+                                pic = data.sortRecipeName[i].Display_Picture_Location;
+                                desc = data.sortRecipeName[i].Recipe_Short_Description;
+                                rid = data.sortRecipeName[i].Recipe_ID;
+
+                                
+                                var location = "../../Recipes/RecipeID/" + rid;
+                                $('#dynamicContent ul').append("<li class=\"gridList\"><a href=\"" + location + "\"><div class=\"recipeResult\"><h3>" + name + "</h3><img src=\"" + pic + "\" src=\"" + location + "\"  /><span>" + desc + "</span></div></a></li></div>");
+
+
+                            }
+                            $('#bodyContents').append("<ul class='pageNumbers'>");
+
+                            for (var i = 1; i < data.page + 1; i++)
+                                if (i == pageNo)
+                                    $('.pageNumbers').append("<li style='font-weight:bold; text-decoration: underline;'>" + i + "</li>");
+                                else
+                                    $('.pageNumbers').append("<li onclick='search(\"recipeName\"," + i + ")'>" + i + "</li>");
+                        }
+                        else {
+                            $('#dynamicContent').append("<ul id='noResult'>");
+                            $('#dynamicContent ul').append("<li>There are no recipes with that name. Try searching for something else</li>");
+                        }
+
+                }
+                else if (section === "recipeTags" && input != "") {
+                    if (data.sortTag != null)
+                        if (data.sortTag.length > 0) {
+                            
+
+                            
+                            $('#dynamicContent').append("<ul class=\"Grid\">");
+
+                            
+
+                            for (var i = 0; i < data.sortTag.length; i++) {
+                                name = data.sortTag[i].Recipe_Name;
+                                pic = data.sortTag[i].Display_Picture_Location;
+                                desc = data.sortTag[i].Recipe_Short_Description;
+                                rid = data.sortTag[i].Recipe_ID;
+
+
+                                
+                                var location = "../../Recipes/RecipeID/" + rid;
+                                $('#dynamicContent ul').append("<li class=\"gridList\"><a href=\"" + location + "\"><div class=\"recipeResult\"><h3>" + name + "</h3><img src=\"" + pic + "\" src=\"" + location + "\"  /><span>" + desc + "</span></div></a></li></div>");
+
+                            }
+                            $('#bodyContents').append("<ul class='pageNumbers'>");
+
+                            for (var i = 1; i < data.page + 1; i++)
+                                if (i == pageNo)
+                                    $('.pageNumbers').append("<li style='font-weight:bold; text-decoration: underline;'>" + i + "</li>");
+                                else
+                                    $('.pageNumbers').append("<li onclick='search(\"recipeTags\"," + i + ")'>" + i + "</li>");
+                        }
+                        else {
+                            $('#dynamicContent').append("<ul id='noResult'>");
+                            $('#dynamicContent ul').append("<li>There are no recipes with those tags. Try searching for something else</li>");
+                        }
+
+                }
+                else if (section === "recipePrep" && input != "") {
+                    if (data.sortPrepTime != null)
+                        if (data.sortPrepTime.length > 0) {
+                            
+
+                            
+                            $('#dynamicContent').append("<ul class=\"Grid\">");
+
+                            for (var i = 0; i < data.sortPrepTime.length; i++) {
+                                name = data.sortPrepTime[i].Recipe_Name;
+                                pic = data.sortPrepTime[i].Display_Picture_Location;
+                                desc = data.sortPrepTime[i].Recipe_Short_Description;
+                                rid = data.sortPrepTime[i].Recipe_ID;
+
+                                
+                                var location = "../../Recipes/RecipeID/" + rid;
+                                $('#dynamicContent ul').append("<li class=\"gridList\"><a href=\"" + location + "\"><div class=\"recipeResult\"><h3>" + name + "</h3><img src=\"" + pic + "\" src=\"" + location + "\"  /><span>" + desc + "</span></div></a></li></div>");
+                                
+
+                            }
+                            $('#bodyContents').append("<ul class='pageNumbers'>");
+
+                            for (var i = 1; i < data.page + 1; i++)
+                                if (i == pageNo)
+                                    $('.pageNumbers').append("<li style='font-weight:bold; text-decoration: underline;'>" + i + "</li>");
+                                else
+                                    $('.pageNumbers').append("<li onclick='search(\"recipePrep\"," + i + ")'>" + i + "</li>");
+                        }
+                        else {
+                            $('#dynamicContent').append("<ul id='noResult'>");
+                            $('#dynamicContent ul').append("<li>There are no recipes that need that length of time to prepare. Try searching for something else</li>");
+                        }
+                }
+                else if (section === "ingredients" && input != "") {
+                    if (data.sortByIngredients != null)
+                        if (data.sortByIngredients.length > 0) {
+                            
+
+                            
+                            $('#dynamicContent').append("<ul class=\"Grid\">");
+
+                            for (var i = 0; i < data.sortByIngredients.length; i++) {
+                                name = data.sortByIngredients[i].Recipe_Name;
+                                pic = data.sortByIngredients[i].Display_Picture_Location;
+                                desc = data.sortByIngredients[i].Recipe_Short_Description;
+                                rid = data.sortByIngredients[i].Recipe_ID;
+
+                                var location = "../../Recipes/RecipeID/" + rid;
+                                $('#dynamicContent ul').append("<li class=\"gridList\"><a href=\"" + location + "\"><div class=\"recipeResult\"><h3>" + name + "</h3><img src=\"" + pic + "\" src=\"" + location + "\"  /><span>" + desc + "</span></div></a></li></div>");
+
+
+
+                            }
+                            $('#bodyContents').append("<ul class='pageNumbers'>");
+
+                            for (var i = 1; i < data.page + 1; i++)
+                                if (i == pageNo)
+                                    $('.pageNumbers').append("<li style='font-weight:bold; text-decoration: underline;'>" + i + "</li>");
+                                else
+                                    $('.pageNumbers').append("<li onclick='search(\"ingredients\"," + i + ")'>" + i + "</li>");
+
+                        }
+                        else {
+                            $('#dynamicContent').append("<ul id='noResult'>");
+                            $('#dynamicContent ul').append("<li>There are no recipes that contain that ingredient. Try searching for something else</li>");
+                        }
+
+                }
+                else if (section === "toolsUsed" && input != "") {
+                    if (data.sortTool != null)
+                        if (data.sortTool.length > 0) {
+                            
+
+                            
+                            $('#dynamicContent').append("<ul class=\"Grid\">");
+
+                            for (var i = 0; i < data.sortTool.length; i++) {
+                                name = data.sortTool[i].Recipe_Name;
+                                pic = data.sortTool[i].Display_Picture_Location;
+                                desc = data.sortTool[i].Recipe_Short_Description;
+                                rid = data.sortTool[i].Recipe_ID;
+
+
+                                var location = "../../Recipes/RecipeID/" + rid;
+                                $('#dynamicContent ul').append("<li class=\"gridList\"><a href=\"" + location + "\"><div class=\"recipeResult\"><h3>" + name + "</h3><img src=\"" + pic + "\" src=\"" + location + "\"  /><span>" + desc + "</span></div></a></li></div>");
+
+
+
+                            }
+
+                            $('#bodyContents').append("<ul class='pageNumbers'>");
+
+                            for (var i = 1; i < data.page + 1; i++)
+                                if (i == pageNo)
+                                    $('.pageNumbers').append("<li style='font-weight:bold; text-decoration: underline;'>" + i + "</li>");
+                                else
+                                    $('.pageNumbers').append("<li onclick='search(\"toolsused\"," + i + ")'>" + i + "</li>");
+
+
+
+                        }
+                        else {
+                            $('#dynamicContent').append("<ul id='noResult'>");
+                            $('#dynamicContent ul').append("<li>There are no recipes that use that tool. Try searching for something else</li>");
+                        }
+
+
+
+                }
+                else if (section === "users" && input != "") {
+
+
+                    
+
+                    
+                    
+                    if (data.sortUsers != null)
+                        if (data.sortUsers.length > 0) {
+
+                            $('#dynamicContent').html("<div id=\"sortlist\">Sort By <span onclick=\"search('AtoZ')\">A-Z</span>    <span onclick=\"search('ZtoA')\">Z-A         </span></div>");
+                            $('#dynamicContent').append("<ul class=\"Grid\">");
+                            
+
+                            for (var i = 0; i < data.sortUsers.length; i++) {
+                                name = data.sortUsers[i].userName;
+                                pic = data.sortUsers[i].userProfilePicture;
+                                desc = data.sortUsers[i].user_Description;
+
+                                rid = data.sortUsers[i].userID;
+
+                                
+                                var location = "../../User/Profile/" + rid;
+                                $('#dynamicContent ul').append("<li class=\"gridList\"><a href=\"" + location + "\"><div class=\"recipeResult\"><h3>" + name + "</h3><img src=\"../../ProfilePicture/" + pic + "\" src=\"" + location + "\"  /><span>" + desc + "</span></div></a></li></div>");
+                                
+
+                            }
+                            $('#bodyContents').append("<ul class='pageNumbers'>");
+
+                            for (var i = 1; i < data.page + 1; i++)
+                                if (i == pageNo)
+                                    $('.pageNumbers').append("<li style='font-weight:bold; text-decoration: underline;'>" + i + "</li>");
+                                else
+                                    $('.pageNumbers').append("<li onclick='search(\"users\"," + i + ")'>" + i + "</li>");
+                        }
+                        else {
+                            $('#dynamicContent').append("<ul id='noResult'>");
+                            $('#dynamicContent ul').append("<li>There are no Users with that name.</li>");
+
+
+                        }
+                }
+                else if (section === "all" && input === "") {
+                    
+                    $("#dynamicContent").html("");
+                    
+
+                    if (data.returnAllRec != null)
+                        if (data.returnAllRec.length > 0) {
+
+
+                            $('#dynamicContent').append("<ul class=\"Grid\">");
+
+                            for (var i = 0; i < data.returnAllRec.length; i++) {
+                                name = data.returnAllRec[i].Recipe_Name;
+                                pic = data.returnAllRec[i].Display_Picture_Location;
+                                desc = data.returnAllRec[i].Recipe_Short_Description;
+                                rid = data.returnAllRec[i].Recipe_ID;
+
+                                var location = "../../Recipes/RecipeID/" + rid;
+                                $('#dynamicContent ul').append("<li class=\"gridList\"><a href=\"" + location + "\"><div class=\"recipeResult\"><h3>" + name + "</h3><img src=\"" + pic + "\" src=\"" + location + "\"  /><span>" + desc + "</span></div></a></li></div>");
+
+
+
+
+                            }
+                            $('#bodyContents').append("<ul class='pageNumbers'>");
+
+                            for (var i = 1; i < data.page + 1; i++)
+                                if (i == pageNo)
+                                    $('.pageNumbers').append("<li style='font-weight:bold; text-decoration: underline;'>" + i + "</li>");
+                                else
+                                    $('.pageNumbers').append("<li onclick='search(\"\"," + i + ")'>" + i + "</li>");
+                        }
+                }
+                else if (section === "all" && input != "") {
+                    
+                    $("#dynamicContent").html("");
+                    
+
+                    if (data.sortRecipeName != null)
+                        if (data.sortRecipeName.length > 0) {
+
+
+                            $('#dynamicContent').append("<ul class=\"Grid\">");
+
+                            for (var i = 0; i < data.sortRecipeName.length; i++) {
+                                name = data.sortRecipeName[i].Recipe_Name;
+                                pic = data.sortRecipeName[i].Display_Picture_Location;
+                                desc = data.sortRecipeName[i].Recipe_Short_Description;
+                                rid = data.sortRecipeName[i].Recipe_ID;
+
+                                var location = "../../Recipes/RecipeID/" + rid;
+                                $('#dynamicContent ul').append("<li class=\"gridList\"><a href=\"" + location + "\"><div class=\"recipeResult\"><h3>" + name + "</h3><img src=\"" + pic + "\" src=\"" + location + "\"  /><span>" + desc + "</span></div></a></li></div>");
+
+
+
+                            }
+                            $('#bodyContents').append("<ul class='pageNumbers'>");
+
+                            for (var i = 1; i < data.page + 1; i++)
+                                if (i == pageNo)
+                                    $('.pageNumbers').append("<li style='font-weight:bold; text-decoration: underline;'>" + i + "</li>");
+                                else
+                                    $('.pageNumbers').append("<li onclick='search(\"\"," + i + ")'>" + i + "</li>");
+                        }
+                        else {
+                            $('#dynamicContent').append("<ul id='noResult'>");
+                            $('#dynamicContent ul').append("<li>There are no results at this time. The server may be under heavy load, please try again later.</li>");
+
+
+                        }
+                }
+                else {
+                    $('#dynamicContent').append("<ul id='noResult'>");
+                    $('#dynamicContent ul').append("<li>There are no results at this time. The server may be under heavy load, please try again later.</li>");
+                }
+
+
+                $("a").css("color", $("#searchPage").css("color"));
+                $(".recipeResult").css("background-color", colors)
+
+                $("#recLoad").css("display", "none");
+                
+
+            }
+
+        });
+
+    }
+
+
+
+
+
+
+
+
+
+    //On add these tags button click add all tags to a list and add that list to the search box
+    $("#addTags").on("click", function () {
+
+        var app = "";
+        $("#chosenTags span").each(function () {
+
+            app += $(this).text() + " ";
+        })
+        var temp = $("#search").val()
+        temp += " " + app;
+        $("#search").val(temp)
+        $("#dialog").dialog("close");
+        $("#chosenTags").html("");
+        list = "";
+
+    })
+
+
+    //On searchbutton press call the search method
+    $("#searchButton").on("click", function () {
+        search('', 1);
+    })
+
+
+
+
+
+
+
+</script>

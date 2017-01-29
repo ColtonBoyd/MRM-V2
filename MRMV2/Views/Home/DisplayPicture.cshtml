@@ -1,0 +1,20 @@
+﻿@model IEnumerable<MRMV2.Recipe>
+
+<div class="cycle-slideshow"
+     data-cycle-fx="tileSlide"
+     data-cycle-timeout=6000
+     data-cycle-caption-plugin=caption2
+     data-cycle-overlay-fx-out="slideUp"
+     data-cycle-pager-fx=scrollVert
+     data-cycle-pager=".example-pager"
+     data-cycle-overlay-fx-in="slideDown">
+    <div onclick="" class="cycle-overlay"></div>
+    @foreach (var item in ViewBag.Images)
+    {
+        <img id="img" onclick="window.location.href='@Url.Action("RecipeID", "Recipes", new {id = item.Recipe_ID})';" src="@item.Display_Picture_Location" data-cycle-title="<a class='recipeTitle' style='color:#428bca;' href='@Url.Action("RecipeID", "Recipes", new {id = item.Recipe_ID })'>@item.Recipe_Name</a>" data-cycle-desc="@item.Recipe_Short_Description">
+    }
+
+
+</div><div class=example-pager></div>
+
+

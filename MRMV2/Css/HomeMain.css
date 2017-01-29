@@ -1,0 +1,123 @@
+﻿
+#dialog {
+    visibility: hidden;
+}
+
+
+
+.example-pager {
+    text-align: center;
+    width: 100%;
+    z-index: 500;
+    top: 10px;
+    overflow: hidden;
+}
+
+    .example-pager span {
+        font-size: 50px;
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        color: #ddd;
+    }
+
+        .example-pager span.cycle-pager-active {
+            color: #D69746 !important;
+        }
+
+    .example-pager > * {
+        cursor: pointer;
+    }
+
+
+
+.cycle-slideshow, .cycle-slideshow * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+
+
+    .cycle-slideshow img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 0;
+        display: block;
+        cursor: pointer;
+    }
+
+.example-pager {
+    position: absolute;
+    top: 10%;
+    height: 10%;
+}
+
+#tabs {
+    width: 100%;
+    position: absolute;
+    left: 0%;
+    top: 0%;
+}
+
+
+
+
+
+.cycle-caption {
+    position: absolute;
+    color: white;
+    bottom: 15px;
+    right: 15px;
+    z-index: 700;
+}
+
+.cycle-overlay {
+    font-family: tahoma, arial;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 600;
+    background: black;
+    color: white;
+    padding: 15px;
+    opacity: .5;
+}
+
+
+.cycle-caption {
+    position: absolute;
+    color: white;
+    bottom: 15px;
+    right: 15px;
+    z-index: 700;
+}
+
+
+
+
+.cycle-slideshow {
+    /*width: 50%;
+    margin: 10px auto;
+    padding: 0;*/
+    position: absolute;
+    height: 100%;
+    /*left: 25%;
+    bottom: 20%;*/
+    background: url(../Icons/spinner.gif) 50% 50% no-repeat;
+    /*min-width: 571px;
+    max-height:450px !important;*/
+}
+
+
+    .cycle-slideshow img:first-child {
+        position: static;
+        z-index: 100;
+    }
+
+td {
+    padding-right: 20px;
+}

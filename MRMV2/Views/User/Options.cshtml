@@ -1,0 +1,1447 @@
+﻿@model IDTEST.Models.OptionsPage
+@{
+ViewBag.Title = "User Options";
+
+}
+
+
+
+<style>
+    #backChange {
+        display: inline;
+    }
+
+    #mainContent {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    html {
+        overflow-y: auto;
+        height: 100px !important;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    ::-webkit-scrollbar {
+        width: 12px;
+        padding-left: 200px;
+        background-color: rgba(0, 0, 0,.5);
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
+
+    .container {
+        height: 100%;
+        max-width: 80%;
+    }
+
+    #NumberOfRecipesPerPage {
+        width: 50px;
+    }
+
+    #colPicker {
+    }
+
+
+    #color {
+        margin-top: 25pt;
+    }
+
+    #color, #textColor {
+        width: 195px;
+    }
+
+    #backgroundImage {
+        float: left;
+        width: 50%;
+    }
+
+        #backgroundImage img {
+            width: 100%;
+            max-height: 350px;
+        }
+
+
+    .right {
+        width: 30%;
+        float: right;
+        margin-left: 20%;
+        max-width:235px;
+    }
+
+
+
+    #bckColorOpacity {
+        width: 194px;
+    }
+
+
+
+    input[type=radio] {
+        vertical-align: top;
+    }
+
+
+    .offPage {
+        overflow: hidden !important;
+        position: absolute !important;
+        left: -500% !important;
+        height:0px;
+    }
+
+    #subForm {
+        /*   position: absolute;
+        left: 10px;
+        bottom: 10px;*/
+    }
+
+    #innerDiv {
+        height: 100%;
+    }
+
+
+    #backgroundChangeBar {
+        height: 430px;
+    }
+
+    #validationSumm {
+        width: 50%;
+        float: left;
+    }
+
+    #textColorPicker {
+        float: left;
+        width: 50%;
+    }
+
+
+    #inputColor {
+        float: left;
+        width: 50%;
+    }
+
+    #colorInputAndBackgroundGallery {
+        margin-top: 50px;
+    }
+
+    #backgroundGallery img {
+        width: 181px;
+        height: 138px;
+    }
+
+    #backgroundGallery {
+    }
+
+        #backgroundGallery ul {
+            list-style-type: none;
+        }
+
+        #backgroundGallery li {
+            float: left;
+            width: 20%;
+            margin-bottom: 30px;
+            height: 150px;
+        }
+
+    .galleryOfImages {
+        background-image: url(../../testasset.png);
+        background-attachment: inherit;
+        background-size: 121px;
+        background-position-x: 91%;
+    }
+
+    hr {
+        width: 100%;
+        clear:both;
+    }
+
+    input[type=text]{
+        width:195px;
+    }
+
+
+    .Selected {
+        outline: 5px solid royalblue;
+        z-index: 3;
+    }
+
+
+    .ui-dialog {
+        text-align: center;
+        /*background-color: rgba(106,106,106,.8) !important;*/
+        background: transparent !important;
+        top: -10px !important;
+    }
+
+        .ui-dialog input[type=text] {
+            background-color: rgba(0,0,0,.5) !important;
+            border-radius: 4px;
+            max-width: 85%;
+            width: 85%;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+    #presetName {
+        background-color: rgba(106,106,106,.8) !important;
+        position: fixed;
+        top: 41%;
+    }
+
+        #presetName h1 {
+            color: white !important;
+        }
+
+        #presetName input[type=text] {
+            color: white !important;
+        }
+
+        #presetName span {
+            position: absolute;
+            left: 270px;
+            bottom: 7px;
+            color: red !important;
+        }
+
+
+
+    #confirm {
+        width: 55px;
+        position: absolute;
+        left: 9px;
+        bottom: 7px;
+    }
+
+    #cancel {
+        width: 55px;
+        position: absolute;
+        right: 9px;
+        bottom: 7px;
+    }
+
+
+    #personalPresetLabel {
+        /*position: absolute;
+        left: 140px;
+        bottom: 7px;*/
+    }
+
+    #icons {
+        overflow: auto;
+    }
+
+        #icons ul {
+            width: 1750px;
+            height: 105px;
+            padding-left: 10px;
+        }
+
+
+        #icons li {
+            float: left;
+            margin-right: 50px;
+            list-style-type: none;
+        }
+
+        #icons img {
+            height: 105px;
+            border: 10px solid transparent;
+            max-width: 160px;
+        }
+
+
+        #icons input[type=radio] {
+            float: left;
+            margin-top: 44px;
+        }
+
+        #icons input[type=file] {
+            float: left;
+            margin-top: 29px;
+            border: 10px solid transparent;
+        }
+
+
+
+        #icons::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        #icons::-webkit-scrollbar-track {
+            height: 10px;
+            border-radius: 5px;
+        }
+
+        #icons::-webkit-scrollbar-thumb {
+            height: 10px;
+        }
+
+    .customIcons {
+        width: 160px;
+    }
+
+
+    .tip {
+        width: 25px;
+        padding-left: 10px;
+    }
+
+    #options {
+        float: left;
+        margin-bottom: 10px;
+    }
+</style>
+
+
+<div class="chosenTheme offPage"><img class="saveIcon" style="z-index: 100; position: absolute; top: 7px; width: 80px; height: 80px; left: 56px;" /></div>
+
+
+<div id="mainContent" class="active">
+    @using (Html.BeginForm("ManualThemeSave", "User", FormMethod.Post, new { id = "changeTheme", @class = "" }))
+    {
+        <div id="options">
+            <span>Number of search results per page</span>
+            @Html.TextBoxFor(m => m.opt.NumberOfRecipesPerPage, new { @max = "100", @min = "1", @type = "number", @id = "numOfRecipes", @Value = Model.opt.NumberOfRecipesPerPage })
+            <br />
+            <br />
+            <span>Should your user profile show up in the user search?</span>
+            @Html.TextBoxFor(m => m.opt.showUpInSearch, new { @class = "offPage" })
+
+            @if (Model.opt.showUpInSearch == 1)
+            {
+                <select><option selected value="Yes">Yes</option><option value="No">No</option></select>
+            }
+            else
+            {
+                <select><option value="Yes">Yes</option><option selected value="No">No</option></select>
+            }
+            <br /><br />
+
+
+
+            <input type="button" id="presetSet" value="Use one of the preset website layouts">
+            <input type="button" id="manualSet" value="Manually set up the website layout">
+            <input type="button" value="Save Changes" id="subForm" />
+            <span class="offPage" id="savingOptions">Updating... <img style="width:20px;" class="saveIcon"></span>
+
+
+        </div>
+
+
+            @Html.ValidationSummary("", new { @class = "text-danger", @id = "validationSumm" })
+            <br />
+            <hr />
+            <div id="innerDiv">
+
+                <div id="manual">
+                    @Html.TextBoxFor(m => m.radValueBox, new { @class = "offPage" })
+                    @Html.TextBoxFor(m => m.galleryBack.Background_Image, new { @Value = "", data_val = "false", @Class = "offPage" })
+                    @Html.TextBoxFor(m => m.themeName, new { @class = "offPage", @Value = "", data_val = "false" })
+                    <div id="backgroundChangeBar">
+                        <div>
+                            <div id="backgroundImage">
+                                <label id="bckImage"><input type="radio" id="choice" name="choice" value="image" />Set background image</label>
+                                <br />
+                                <span> <span>Change Website Background:  </span><br /><input type="file" name="file" accept="image/*" id="backChange" /></span>
+
+                            </div>
+                            <div id="backgroundColor" class="right">
+                                <label id="bckColor"><input type="radio" id="choice" name="choice" value="color" />Set background color</label>
+                                <div id="colPicker"></div>
+                                <div class="form-item">
+                                    <input type="text" id="color" name="color" value=@Model.opt.userTheme.Background_Color />
+                                    @Html.TextBoxFor(m => m.galleryBack.Background_Color, new { @id = "colorTemp", @class = "offPage" })
+                                    <br>
+                                    <br>
+                                    <label>
+                                        Set background opacity
+                                        <br />
+                                        @Html.TextBoxFor(m => m.galleryBack.Background_Color_Opacity, new { @class = "opacity", @name = "color", @id = "bckColorOpacity", @Value = Model.themeList[0].Background_Color_Opacity })
+
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+
+
+                    <hr />
+                    <div>
+                        <div id="textColorPicker">
+                            <p>
+                                <label><input type="checkbox" id="changeColorRad" name="changeColorRad" />Change text color</label>
+                            </p>
+
+                            <div id="textColPicker"></div>
+                            <div class="form-item">
+                                @Html.TextBoxFor(m => m.galleryBack.Text_Color, new { @id = "textColorTemp", @Class = "offPage" })
+                                <input type="text" id="textColor" value=@Model.opt.userTheme.Text_Color />
+
+
+                            </div>
+                        </div>
+
+                        <div id="foreGroundBox" class="right">
+                            <p>
+                                <label><input type="checkbox" id="changeForegroundColorRad" name="changeForegroundColorRad" />Change foreground box color </label><img id="foregroundHelp" class="tip">
+                            </p>
+
+                            <div id="forgroundColorPicker"></div>
+                            <div class="form-item">
+                                @Html.TextBoxFor(m => m.galleryBack.Background_Box_Color, new { @id = "foregroundBoxHexCodeTemp", @Class = "offPage" })
+                                <input type="text" id="foregroundBoxHexCode" value=@Model.opt.userTheme.Background_Box_Color />
+                                <br>
+                                <br>
+                                <label>
+                                    Set foreground box opacity
+                                    <br />
+                                    @Html.TextBoxFor(m => m.galleryBack.Background_Box_Opacity, new { @class = "opacity", @name = "color", @Value = Model.themeList[0].Background_Box_Opacity })
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div>
+
+                        <div id="inputColor">
+
+                            <p>
+                                <label><input type="checkbox" id="changeInputColor" name="changeInputColor" />Change input box color </label><img id="inputHelp" class="tip">
+                            <p><b>Note: Other color change boxes on this page will not be this color</b></p>
+                            </p>
+
+                            <div id="inChange"></div>
+                            <div class="form-item">
+                                @Html.TextBoxFor(m => m.galleryBack.Input_Color, new { @name = "inptChange", @class = "offPage", @id = "inputHexCodeTemp" })
+                                <input type="text" id="inputHexCode" value=@Model.opt.userTheme.Input_Color />
+                                <br>
+                                <br>
+                                <label>
+                                    Set Input opacity
+                                    <br />
+                                    @Html.TextBoxFor(m => m.galleryBack.Input_Opacity, new { @class = "opacity", @name = "color", @Value = Model.themeList[0].Input_Opacity })
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="contrastBox" class="right">
+
+                            <p>
+                                <label><input type="checkbox" id="changeContrastBoxColor" name="changeContrastBoxColor" />Change contrast box color </label><img id="contrastHelp" class="tip">
+                            </p>
+
+                            <div id="contrastBoxChange"></div>
+                            <div class="form-item">
+                                <input type="text" id="contrastBoxColor" value=@Model.opt.userTheme.Contrast_Box_Background_Color />
+                                @Html.TextBoxFor(m => m.galleryBack.Contrast_Box_Background_Color, new { @id = "contrastBoxColorTemp", @Class = "offPage" })
+                                <br>
+                                <br>
+                                <label>
+                                    Set contrast box opacity
+                                    <br />
+                                    @Html.TextBoxFor(m => m.galleryBack.Contrast_Box_Background_Color_Opacity, new { @class = "opacity", @name = "color", @Value = Model.themeList[0].Contrast_Box_Background_Color_Opacity })
+                                </label>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div id="lineColor">
+
+                            <p>
+                                <label><input type="checkbox" id="changeHrColor" name="changeHrColor" />Change lines colors </label><img id="hrHelp" class="tip">
+                            </p>
+
+                            <div id="hrColorChange"></div>
+                            <div class="form-item">
+                                @Html.TextBoxFor(m => m.galleryBack.Hr_Color, new { @id = "hrColorTemp", @Class = "offPage" })
+                                <input type="text" id="hrColor" value=@Model.opt.userTheme.Hr_Color />
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <hr />
+
+                    <div id="icons">
+                        <ul id="mrmLogo">
+                            <li><img src="~/Icons/MRMLogo.png" /></li> <!--mrmLogo.parent img.prop = src-->
+                            <li><img src="~/Icons/MRMLogoBlue.png" /></li>
+                            <li><img src="~/Icons/MRMLogoDark.png" /></li>
+                            <li><img src="~/Icons/MRMLogoGreen.png" /></li>
+                            <li><img src="~/Icons/MRMLogoOrange.png" /></li>
+                            <li><img src="~/Icons/MRMLogoRed.png" /></li>
+                            <li><img src="~/Icons/MRMLogoYellow.png" /></li>
+                            <li id="mrmLogoCustom"><input type="radio" name="mrmLogo" value="Other" /><input id="mrmLogoInput" accept="image/*" type="file" /></li>
+                        </ul>
+                        <ul id="infoLogo">
+                            <li><img src="~/Icons/info.png" /></li>
+                            <li><img src="~/Icons/infoBlue.png" /></li>
+                            <li><img src="~/Icons/infoDark.png" /></li>
+                            <li><img src="~/Icons/infoGreen.png" /></li>
+                            <li><img src="~/Icons/infoOrange.png" /></li>
+                            <li><img src="~/Icons/infoRed.png" /></li>
+                            <li><img src="~/Icons/infoYellow.png" /></li>
+                            <li id="infoLogoCustom"><input type="radio" name="infoLogo" value="Other" /><input id="infoLogoInput" accept="image/*" type="file" /></li>
+                        </ul>
+                        <ul id="twitterLogo">
+                            <li><img src="~/Icons/Twitter.png" /></li>
+                            <li><img src="~/Icons/TwitterBlue.png" /></li>
+                            <li><img src="~/Icons/TwitterDark.png" /></li>
+                            <li><img src="~/Icons/TwitterGreen.png" /></li>
+                            <li><img src="~/Icons/TwitterOrange.png" /></li>
+                            <li><img src="~/Icons/TwitterRed.png" /></li>
+                            <li><img src="~/Icons/TwitterYellow.png" /></li>
+                            <li id="twitterLogoCustom"><input type="radio" name="twitterLogo" value="Other" /><input id="twitterLogoInput" accept="image/*" type="file" /></li>
+                        </ul>
+                        <ul id="redditLogo">
+                            <li><img src="~/Icons/Reddit.png" /></li>
+                            <li><img src="~/Icons/RedditBlue.png" /></li>
+                            <li><img src="~/Icons/RedditDark.png" /></li>
+                            <li><img src="~/Icons/RedditGreen.png" /></li>
+                            <li><img src="~/Icons/RedditOrange.png" /></li>
+                            <li><img src="~/Icons/RedditRed.png" /></li>
+                            <li><img src="~/Icons/RedditYellow.png" /></li>
+                            <li id="redditLogoCustom"><input type="radio" name="redditLogo" value="Other" /><input id="redditLogoInput" accept="image/*" type="file" /></li>
+                        </ul>
+                        <ul id="facebookLogo">
+                            <li><img src="~/Icons/facebook.png" /></li>
+                            <li><img src="~/Icons/facebookBlue.png" /></li>
+                            <li><img src="~/Icons/facebookDark.png" /></li>
+                            <li><img src="~/Icons/facebookGreen.png" /></li>
+                            <li><img src="~/Icons/facebookOrange.png" /></li>
+                            <li><img src="~/Icons/facebookRed.png" /></li>
+                            <li><img src="~/Icons/facebookYellow.png" /></li>
+                            <li id="facebookLogoCustom"><input type="radio" name="facebookLogo" value="Other" /><input id="facebookLogoInput" accept="image/*" type="file" /></li>
+                        </ul>
+
+
+                        <ul id="gitLogo">
+                            <li><img src="~/Icons/Git.png" /></li>
+                            <li><img src="~/Icons/GitBlue.png" /></li>
+                            <li><img src="~/Icons/GitDark.png" /></li>
+                            <li><img src="~/Icons/GitGreen.png" /></li>
+                            <li><img src="~/Icons/GitOrange.png" /></li>
+                            <li><img src="~/Icons/GitRed.png" /></li>
+                            <li><img src="~/Icons/GitYellow.png" /></li>
+                            <li id="gitLogoCustom"><input type="radio" name="gitLogo" value="Other" /><input id="gitLogoInput" accept="image/*" type="file" /></li>
+                        </ul>
+                        <ul id="saveLogo">
+                            <li><img src="~/Icons/SaveRec.png" /></li>
+                            <li><img src="~/Icons/SaveRecBlue.png" /></li>
+                            <li><img src="~/Icons/SaveRecDark.png" /></li>
+                            <li><img src="~/Icons/SaveRecGreen.png" /></li>
+                            <li><img src="~/Icons/SaveRecOrange.png" /></li>
+                            <li><img src="~/Icons/SaveRecRed.png" /></li>
+                            <li><img src="~/Icons/SaveRecYellow.png" /></li>
+                            <li id="saveLogoCustom"><input type="radio" name="saveLogo" value="Other" /><input id="saveLogoInput" accept="image/*" type="file" /></li>
+                        </ul>
+
+                        <ul id="garbageLogo">
+                            <li><img src="~/Icons/garbage.png" /></li>
+                            <li><img src="~/Icons/garbageBlue.png" /></li>
+                            <li><img src="~/Icons/garbageDark.png" /></li>
+                            <li><img src="~/Icons/garbageGreen.png" /></li>
+                            <li><img src="~/Icons/garbageOrange.png" /></li>
+                            <li><img src="~/Icons/garbageRed.png" /></li>
+                            <li><img src="~/Icons/garbageYellow.png" /></li>
+                            <li id="garbageLogoCustom"><input type="radio" name="garbageLogo" value="Other" /><input id="garbageLogoInput" accept="image/*" type="file" /></li>
+                        </ul>
+
+
+
+
+                        <ul id="arrowLogoUp">
+                            <li><img src="~/Icons/ArrowUpWhite.png" /></li>
+                            <li><img src="~/Icons/ArrowUpBlue.png" /></li>
+                            <li><img src="~/Icons/ArrowUp.png" /></li>
+                            <li><img src="~/Icons/ArrowUpGreen.png" /></li>
+                            <li><img src="~/Icons/ArrowUpOrange.png" /></li>
+                            <li><img src="~/Icons/ArrowUpRed.png" /></li>
+                            <li><img src="~/Icons/ArrowUpYellow.png" /></li>
+                            <li id="arrowUpLogoCustom"><input type="radio" name="arrowLogoUp" value="Other" /><input id="arrowLogoUpInput" accept="image/*" type="file" /></li>
+                        </ul>
+                        <ul id="arrowLogoLeft">
+                            <li><img src="~/Icons/ArrowLeftWhite.png" /></li>
+                            <li><img src="~/Icons/ArrowLeftBlue.png" /></li>
+                            <li><img src="~/Icons/ArrowLeft.png" /></li>
+                            <li><img src="~/Icons/ArrowLeftGreen.png" /></li>
+                            <li><img src="~/Icons/ArrowLeftOrange.png" /></li>
+                            <li><img src="~/Icons/ArrowLeftRed.png" /></li>
+                            <li><img src="~/Icons/ArrowLeftYellow.png" /></li>
+                            <li id="arrowLeftLogoCustom"><input type="radio" name="arrowLogoLeft" value="Other" /><input id="arrowLogoLeftInput" accept="image/*" type="file" /></li>
+                        </ul>
+                        <ul id="arrowLogoDown">
+                            <li><img src="~/Icons/ArrowDownWhite.png" /></li>
+                            <li><img src="~/Icons/ArrowDownBlue.png" /></li>
+                            <li><img src="~/Icons/ArrowDown.png" /></li>
+                            <li><img src="~/Icons/ArrowDownGreen.png" /></li>
+                            <li><img src="~/Icons/ArrowDownOrange.png" /></li>
+                            <li><img src="~/Icons/ArrowDownRed.png" /></li>
+                            <li><img src="~/Icons/ArrowDownYellow.png" /></li>
+                            <li id="arrowDownLogoCustom"><input type="radio" name="arrowLogoDown" value="Other" /><input id="arrowLogoDownInput" accept="image/*" type="file" /></li>
+                        </ul>
+                        <ul id="arrowLogoRight">
+                            <li><img src="~/Icons/ArrowRightWhite.png" /></li>
+                            <li><img src="~/Icons/ArrowRightBlue.png" /></li>
+                            <li><img src="~/Icons/ArrowRight.png" /></li>
+                            <li><img src="~/Icons/ArrowRightGreen.png" /></li>
+                            <li><img src="~/Icons/ArrowRightOrange.png" /></li>
+                            <li><img src="~/Icons/ArrowRightRed.png" /></li>
+                            <li><img src="~/Icons/ArrowRightYellow.png" /></li>
+                            <li id="arrowRightLogoCustom"><input type="radio" name="arrowLogoRight" value="Other" /><input id="arrowLogoRightInput" accept="image/*" type="file" /></li>
+                        </ul>
+                    </div>
+                    <label id="personalPresetLabel"><input type="checkbox" id="personalPreset" />Save As Personal Preset</label>
+
+                </div>
+                <div id="presets">
+                    <div id="backgroundGallery">
+                        <ul>
+                            @for (var i = 0; i < @Model.themeList.Count; i++)
+                            {
+                                if (Model.themeList[i].Background_Image_Color_Or_Theme == "image")
+                                {
+                                    if (Model.themeList[i].User_Custom_Theme == 1)
+                                    {
+                                        <li><img class="trashCan" id="@Model.themeList[i].Theme_Id" style="position: relative; float: left; width: 25px; height: 25px; z-index: 14;right: -188px; cursor:pointer" /><div class="presetBackground customColors" id='@Model.themeList[i].Theme_Id' style="z-index: 1; position: absolute; width: 181px; height: 138px;"><img src='@Model.themeList[i].Background_Image' class="presetBackground" id='@Model.themeList[i].Theme_Id' /><img src="@Model.themeList[i].Logo_Main" style="width: 20px; height: 16px; position: absolute; left: 0; top: 3px;" /><div style="background-color:@Model.themeList[i].Background_Box_Color; width: 80%; left: 19px; bottom: 0px; height: 102px; z-index: 2; position: absolute;"></div> </div><span style="position:relative; top: 137px;"><b>@Model.themeList[i].Name</b></span></li>
+
+                                    }
+                                    else
+                                    {
+                                        <li><div class="presetBackground customColors" id='@Model.themeList[i].Theme_Id' style="z-index: 1; position: absolute; width: 181px; height: 138px;"><img src='@Model.themeList[i].Background_Image' class="presetBackground" id='@Model.themeList[i].Theme_Id' /><img src="@Model.themeList[i].Logo_Main" style="width: 20px; height: 16px; position: absolute; left: 0; top: 3px;" /><div style="background-color:@Model.themeList[i].Background_Box_Color; width: 80%; left: 19px; bottom: 0px; height: 102px; z-index: 2; position: absolute;"></div> </div><span style="position:relative; top: 137px;"><b>@Model.themeList[i].Name</b></span></li>
+                                    }
+                                }
+                                else
+                                {
+                                    if (Model.themeList[i].User_Custom_Theme == 1)
+                                    {
+
+                                        <li><img class="trashCan" id="@Model.themeList[i].Theme_Id" style="position: relative; float: left; width: 25px; height: 25px; z-index: 14;right: -188px; cursor:pointer" /><div class="presetBackground customColors" id='@Model.themeList[i].Theme_Id' style="background-color:@Model.themeList[i].Background_Color; z-index: 1; position: absolute; width: 181px; height: 138px;"><img src="@Model.themeList[i].Logo_Main" style="width: 20px; height: 16px; position: absolute; left: 0; top: 3px;" /><div style="background-color:@Model.themeList[i].Background_Box_Color; width: 80%; left: 19px; bottom: 0px; height: 102px; z-index: 2; position: absolute;"></div> </div><span style="position:relative; top: 137px;"><b>@Model.themeList[i].Name</b></span></li>
+                                    }
+                                    else
+                                    {
+                                        <li><div class="presetBackground customColors" id='@Model.themeList[i].Theme_Id' style="background-color:@Model.themeList[i].Background_Color; z-index: 1; position: absolute; width: 181px; height: 138px;"><img src="@Model.themeList[i].Logo_Main" style="width: 20px; height: 16px; position: absolute; left: 0; top: 3px;" /><div style="background-color:@Model.themeList[i].Background_Box_Color; width: 80%; left: 19px; bottom: 0px; height: 102px; z-index: 2; position: absolute;"></div> </div><span style="position:relative; top: 137px;"><b>@Model.themeList[i].Name</b></span></li>
+                                    }
+                                }
+                            }
+
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+    }
+    <div id="presetName">
+        <h1>What would you like to name your preset?</h1>
+        <input type="text" />
+        <img id="confirm" src="~/Icons/check.png" />
+        <img id="cancel" src="~/Icons/X.png" />
+        <span></span>
+    </div>
+
+
+
+
+
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var width = window.innerWidth / 2;
+        //Set all Logo locations from database to variable
+        var mainLoc = "@Model.opt.userTheme.Logo_Main";
+
+        var infoLoc = "@Model.opt.userTheme.Logo_Info";
+        
+        var twitterLoc = "@Model.opt.userTheme.Logo_Twitter";
+        
+        var redditLoc = "@Model.opt.userTheme.Logo_Reddit";
+        
+        var facebookLoc = "@Model.opt.userTheme.Logo_Facebook";
+      
+        var bitbucketLoc = "@Model.opt.userTheme.Logo_BitBucket";
+      
+        var saveLoc = "@Model.opt.userTheme.Logo_Save";
+      
+        var garbageLoc = "@Model.opt.userTheme.Logo_Garbage";
+      
+        var arrowLeftLoc = "@Model.opt.userTheme.Arrow_Left";
+      
+        var arrowRightLoc = "@Model.opt.userTheme.Arrow_Right";
+      
+        var arrowUpLoc = "@Model.opt.userTheme.Arrow_Up";
+      
+        var arrowDownLoc = "@Model.opt.userTheme.Arrow_Down";
+      
+
+        //Top division radio button value
+        var radValue = ""
+        //Public or private profile selector
+        var ddValue = @Model.opt.showUpInSearch;
+
+        //Ensure that buttons are enabled
+        $("#subForm").prop("disabled", false);
+        $("#manualSet").prop("disabled", false);
+        $("#presetSet").prop("disabled", false);
+
+        var presetChosen = "";
+
+
+        var wHeight = window.innerHeight;
+        $('#body').css("height", wHeight * .8242)
+        
+
+        //This loop adds the selected class which is a border to each logo
+        $("#icons ul").children().each(function () {
+            if ($(this).children().prop("src").indexOf(mainLoc) !== -1 || $(this).children().prop("src").indexOf(infoLoc) !== -1 || $(this).children().prop("src").indexOf(twitterLoc) !== -1 || $(this).children().prop("src").indexOf(redditLoc) !== -1 || $(this).children().prop("src").indexOf(facebookLoc) !== -1 || $(this).children().prop("src").indexOf(bitbucketLoc) !== -1 || $(this).children().prop("src").indexOf(saveLoc) !== -1 || $(this).children().prop("src").indexOf(arrowLeftLoc) !== -1 || $(this).children().prop("src").indexOf(arrowRightLoc) !== -1 || $(this).children().prop("src").indexOf(arrowUpLoc) !== -1 || $(this).children().prop("src").indexOf(arrowDownLoc) !== -1 || $(this).children().prop("src").indexOf(garbageLoc) !== -1) {
+                $(this).addClass("Selected")
+            }
+
+
+        })
+
+        //If a logo is custom insert and selected the custom logo
+        $("#icons ul").each(function () {
+            if ($(this).html().indexOf("Selected") == -1) {
+                switch ($(this).prop("id")) {
+                    case "mrmLogo": $("<li class='Selected'><img class='customIcons' src='../../" + mainLoc + "'/></li>").insertBefore("#mrmLogoCustom"); break;
+                    case "infoLogo": $("<li class='Selected'><img class='customIcons' src='../../" + infoLoc + "'/></li>").insertBefore("#infoLogoCustom"); break;
+                    case "twitterLogo": $("<li class='Selected'><img class='customIcons' src='../../" + twitterLoc + "'/></li>").insertBefore("#twitterLogoCustom"); break;
+                    case "redditLogo": $("<li class='Selected'><img class='customIcons' src='../../" + redditLoc + "'/></li>").insertBefore("#redditLogoCustom"); break;
+                    case "facebookLogo": $("<li class='Selected'><img class='customIcons' src='../../" + facebookLoc + "'/></li>").insertBefore("#facebookLogoCustom"); break;
+                    case "gitLogo": $("<li class='Selected'><img class='customIcons' src='../../" + bitbucketLoc + "'/></li>").insertBefore("#gitLogoCustom"); break;
+                    case "saveLogo": $("<li class='Selected'><img class='customIcons' src='../../" + saveLoc + "'/></li>").insertBefore("#saveLogoCustom"); break;
+                    case "garbageLogo": $("<li class='Selected'><img class='customIcons' src='../../" + garbageLoc + "'/></li>").insertBefore("#garbageLogoCustom"); break;
+                    case "arrowLogoLeft": $("<li class='Selected'><img class='customIcons' src='../../" + arrowLeftLoc + "'/></li>").insertBefore("#arrowLeftLogoCustom"); break;
+                    case "arrowLogoRight": $("<li class='Selected'><img class='customIcons' src='../../" + arrowRightLoc + "'/></li>").insertBefore("#arrowRightLogoCustom"); break;
+                    case "arrowLogoUp": $("<li class='Selected'><img class='customIcons' src='../../" + arrowUpLoc + "'/></li>").insertBefore("#arrowUpLogoCustom"); break;
+                    case "arrowLogoDown": $("<li class='Selected'><img class='customIcons' src='../../" + arrowDownLoc + "'/></li>").insertBefore("#arrowDownLogoCustom"); break;
+                }
+
+            }
+        });
+
+
+
+
+
+        //Init the preset name dialog
+        $("#presetName").dialog({
+            width: width,
+            autoOpen: false,
+            minWidth: 730,
+            resizable: false,
+            minHeight: 250
+        })
+        $(".ui-dialog-titlebar").remove();
+        $(".ui-dialog").css("top", "-10px");
+        $("#presetSet").on("click", function () {
+            $("#presets").removeClass("offPage");
+            $("#manual").addClass("offPage");
+            $("#icons").addClass("offPage");
+            $("#personalPresetLabel").addClass("offPage");
+            $("#mainContent").css("height", 900);
+            $("#mainContent").css("min-height", 900);
+
+
+            window.scrollTo(0, 0);
+
+
+            $("#backgroundGallery li img").each(function () {
+                $(this).removeClass("Selected");
+            });
+
+        });
+
+        //On click of the manual set button set up the manual selection page
+        $("#manualSet").on("click", function () { $("#presets").addClass("offPage"); $("#manual").removeClass("offPage"); $("#icons").removeClass("offPage"); $("#personalPresetLabel").removeClass("offPage"); $("#mainContent").css("height", 3150); $("#mainContent").css("min-height", 3150); window.scrollTo(0, 0); })
+
+        $("#presets").addClass("offPage");
+        $("#manual").addClass("offPage");
+
+
+
+
+        //Shake effect on trashcan
+        $(".trashCan").mouseover(function () {
+
+            $(this).stop().effect('shake', { distance: 2, direction: "left" }, 500);
+
+        });
+
+
+        //Delete user Created themes
+        $(".trashCan").on("click", function () {
+            var id = $(this).prop("id");
+
+            $.ajax({
+                type: "POST",
+                url: "/User/deleteTheme",
+                data: { id: id},
+                dataType: 'html',
+                context:this,
+                success: function (path) {
+
+                    $(this).closest("li").remove();
+
+                },
+
+            });
+        })
+
+
+
+
+
+        //Check the radiobutton beside the file input dialog when the dialog is uploaded to
+        $("#icons input[type='file']").change(function () {
+            $(this).parent().children("input[type='radio']").trigger("click");
+            var inId = $(this).prop("id");
+            var file = document.getElementById(inId).files[0];
+            var formData = new FormData();
+            presetChosen = "";
+
+
+            switch ($(this).parent().parent().prop("id")) {
+                case "mrmLogo": formData.append("mrmLogo", file); mainLoc = "custom"; break;
+                case "infoLogo": formData.append("infoLogo", file); infoLoc = "custom"; break;
+                case "twitterLogo": formData.append("twitterLogo", file); twitterLoc = "custom"; break;
+                case "redditLogo": formData.append("redditLogo", file); redditLoc = "custom"; break;
+                case "facebookLogo": formData.append("facebookLogo", file); facebookLoc = "custom"; break;
+                case "gitLogo": formData.append("gitLogo", file); bitbucketLoc = "custom"; break;
+                case "saveLogo": formData.append("saveLogo", file); saveLoc = "custom"; break;
+                case "garbageLogo": formData.append("garbageLogo", file); garbageLoc = "custom"; break;
+                case "arrowLogoLeft": formData.append("arrowLogoLeft", file); arrowLeftLoc = "custom"; break;
+                case "arrowLogoRight": formData.append("arrowLogoRight", file); arrowRightLoc = "custom"; break;
+                case "arrowLogoUp": formData.append("arrowLogoUp", file); arrowUpLoc = "custom"; break;
+                case "arrowLogoDown": formData.append("arrowLogoDown", file); arrowDownLoc = "custom"; break;
+                default: break;
+            }
+
+
+            $.ajax({
+                type: "POST",
+                url: "/User/ ",
+                data: formData,
+                dataType: 'html',
+                contentType: false,
+                processData: false,
+                error: function () {
+                    toast('An error has occured when uploading custom logo', 1000);
+                }
+            });
+
+        })
+
+        //Highlight icon selected and remove the highlight from all other icons in the row
+        //There is a variable for each row of icons. When this is triggered it will set the location of the selected image to the variable for that row
+        $("#icons img").on("click", function () {
+            presetChosen = "";
+            $(this).parent().parent().children("li").each(function () { $("input[type='radio']").prop("checked", false); $("input[type='file']").removeClass("Selected") });
+            $(this).parent().parent().children("li").each(function () {
+                $(this).removeClass("Selected");
+
+            });
+
+            $("#backgroundGallery li div").each(function () {
+                $(this).removeClass("Selected");
+            });
+
+            $(this).parent().addClass("Selected")
+            switch ($(this).parent().parent().prop("id")) {
+                case "mrmLogo": mainLoc = $(this).prop("src"); break;
+                case "infoLogo": infoLoc = $(this).prop("src"); break;
+                case "twitterLogo": twitterLoc = $(this).prop("src"); break;
+                case "redditLogo": redditLoc = $(this).prop("src"); break;
+                case "facebookLogo": facebookLoc = $(this).prop("src"); break;
+                case "gitLogo": bitbucketLoc = $(this).prop("src"); break;
+                case "saveLogo": saveLoc = $(this).prop("src"); break;
+                case "garbageLogo": garbageLoc = $(this).prop("src"); break;
+                case "arrowLogoLeft": arrowLeftLoc = $(this).prop("src"); break;
+                case "arrowLogoRight": arrowRightLoc = $(this).prop("src"); break;
+                case "arrowLogoUp": arrowUpLoc = $(this).prop("src"); break;
+                case "arrowLogoDown": arrowDownLoc = $(this).prop("src"); break;
+                default: break;
+            }
+        })
+
+
+        //When the custom icon radio button is selected unhighlight all icons in that row
+        $("#icons input[type='radio']").on("click", function () {
+            presetChosen = "";
+            $(this).parent().parent().children("li").each(function () {
+                $(this).removeClass("Selected");
+            });
+
+            $(this).parent().children("input[type='file']").addClass("Selected")
+            $(".customColors").removeClass("Selected");
+
+
+
+        })
+
+
+        //Apply 3rd party jquery extension farbtastic to enable the color wheel selectors
+        $('#inChange').farbtastic('#inputHexCode');
+        $('#colPicker').farbtastic('#color');
+        $('#textColPicker').farbtastic('#textColor');
+        $('#forgroundColorPicker').farbtastic('#foregroundBoxHexCode');
+        $('#contrastBoxChange').farbtastic('#contrastBoxColor');
+        $('#hrColorChange').farbtastic('#hrColor');
+
+
+        //Set the radValue variable to either image or color based on which radio button is selected at the top of the page
+        $('#backgroundChangeBar input[type="radio"]').click(function () {
+            if ($(this).is(':checked')) {
+                radValue = $(this).val();
+                presetChosen = "";
+                $(".customColors").removeClass("Selected");
+
+            }
+        })
+
+        //On preset click add the Selected class to it and remove it from all other presets and options on the first page
+        $("#backgroundGallery li img, .customColors").on("click", function () {
+            //$("#backgroundGallery li img").each(function () { $(this).removeClass("Selected"); })
+            $("#backgroundGallery .saveIcon").remove();
+            var icon = $(".chosenTheme").html();
+            $(this).append(icon);
+            $(".customColors").removeClass("Selected");
+            radValue = "";
+            mainLoc = "";
+            infoLoc = "";
+            twitterLoc = "";
+            redditLoc = "";
+            facebookLoc = "";
+            bitbucketLoc = "";
+            saveLoc = "";
+            garbageLoc = "";
+            arrowLeftLoc = "";
+            arrowRightLoc = "";
+            arrowUpLoc = "";
+            arrowDownLoc = "";
+
+            $("#manual input[type=checkbox]").each(function () {
+                $(this).prop("checked", false)
+            })
+            $("#manual input[type=radio]").each(function () {
+                $(this).prop("checked", false)
+            })
+
+            $("#icons li").each(function () {
+                $(this).removeClass("Selected");
+            })
+            $(this).closest("div").addClass("Selected");
+
+            presetChosen = this.id;
+
+        })
+
+
+
+
+
+
+
+
+
+
+        //Confirm button in the create a preset dialog menu closes the box if the name entered is valid and will give a warning if name is left blank
+        $("#confirm").on("click", function () {
+            var presetName = $("#presetName input[type=text]").val();
+            $(".customColors").removeClass("Selected");
+            if (presetName != "") {
+                $("#presetName").dialog("close");
+                $("#themeName").val(presetName);
+            }
+            else
+                $("#presetName span").text("Name Cannot Be Left Blank")
+
+        })
+
+
+        //Cancel setting personal preset, unchecks the checkbox and closes the dialog
+        $("#cancel").on("click", function () {
+            $("#presetName").dialog("close");
+            $("#personalPreset").prop("checked", false);
+            window.scrollTo(0, 0);
+            $("#themeName").val();
+        })
+
+
+
+
+
+
+        //Opens the personal preset menu when the checkbox is checked
+        $("#personalPreset").change(function () {
+            if (this.checked) {
+                $("#presetSet").hide();
+                window.scrollTo(0, 0);
+                $("#presetName").dialog("open")
+
+            }
+            else {
+                $("#presetSet").show();
+                $("#presetName").dialog("close")
+                $("#themeName").val(presetName);
+            }
+        });
+
+
+
+
+
+        //sets ddValue variable one dropdown value change for the user profile show up in search option
+        $('select').change(function () {
+
+            if (this.value == "Yes")
+                ddValue = 1;
+            else
+                ddValue = 0;
+
+        })
+
+
+        //If a background file is uploaded at the top of the page set the radiobutton to selected and set radValue to image
+        $("#backChange").on('change', function () {
+            $("#bckImage input[type=radio]").prop("checked", "checked")
+            $(".customColors").removeClass("Selected");
+            presetChosen = "";
+            radValue = "image"
+        });
+
+
+
+
+
+
+        //If a background color or opacity is changed at the top of the page set the radiobutton to selected and set radValue to color
+        $("#bckColorOpacity, #color").on('change', function () {
+            $("#bckColor input[type=radio]").prop("checked", "checked")
+            presetChosen = "";
+            $(".customColors").removeClass("Selected");
+            radValue = "color"
+
+        });
+
+
+
+
+
+
+        //If the text color is changed check the coresponding checkbox
+        $("#textColor").on('change', function () {
+            $("#textColorPicker input[type=checkbox]").prop("checked", "checked")
+            presetChosen = "";
+            $(".customColors").removeClass("Selected");
+        });
+
+
+
+
+
+        //If the foreground box color or opacity is changed check the coresponding checkbox
+        $("#foregroundBoxHexCode, #backgroundBoxOpacity").on('change', function () {
+            $("#foreGroundBox input[type=checkbox]").prop("checked", "checked")
+            presetChosen = "";
+            $(".customColors").removeClass("Selected");
+        });
+
+
+
+
+
+
+        //If the input box color or opacity is changed check the coresponding checkbox
+        $("#inputHexCode, #inputHexCodeOpacity").on('change', function () {
+            $("#inputColor input[type=checkbox]").prop("checked", "checked")
+            presetChosen = "";
+            $(".customColors").removeClass("Selected");
+        });
+
+
+
+
+
+        //If the contrast box color or opacity is changed check the coresponding checkbox
+        $("#contrastBoxColor, #contrastBoxOpacity").on('change', function () {
+            $("#contrastBox input[type=checkbox]").prop("checked", "checked")
+            presetChosen = "";
+            $(".customColors").removeClass("Selected");
+        });
+
+
+
+
+        //If the hr line color or opacity is changed check the coresponding checkbox
+        $("#hrColor, #hrOpacity").on('change', function () {
+            $("#lineColor input[type=checkbox]").prop("checked", "checked")
+            presetChosen = "";
+            $(".customColors").removeClass("Selected");
+        });
+
+
+        //Icon pulse on save
+        function pulse() {
+            $('.saveIcon').fadeIn(2000);
+            $('.saveIcon').fadeOut(2000);
+        }
+
+
+        //On Save Changes click
+        $("#subForm").on("click", function () {
+
+            var errList = [];
+            //This is used to ensure that valid colors are passed back for fields like text color nad background color
+            $("body").append("<div id='colorTest'></div>");
+            var imgLoadcomplete = true;
+            var iconsChanged = true;
+
+            //Clear the error list
+            $("#validationSumm ul").html("")
+            var countr = 0;
+
+            //If a preset was chosen pass the id of the preset to the controller and skip updating the manual settings
+            if (presetChosen != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "/User/uploadTheme",
+                    data: { id: presetChosen },
+                    dataType: 'html',
+                    success: function (path) {
+
+                    }
+                })
+            }
+            else {
+                //newRadValue is set in the farbtastic plugin
+                if (newradValue!= "")
+                    radValue = newradValue
+
+
+
+                //If the image radio button was selected ensure the image is actully there and upload it if it is
+                if (radValue === "image") {
+                    imgLoadcomplete = false;
+
+                    var file = document.getElementById("backChange").files[0];
+
+                    if (file == undefined || file == null) {
+                        errList[countr] = "No background image has been uploaded";
+                        countr++;
+
+                    }
+                    else {
+                        var formData = new FormData();
+                        formData.append("File", file);
+                        $("#color").val("")
+                        $.ajax({
+                            type: "POST",
+                            url: "/User/uploadBackground",
+                            data: formData,
+                            dataType: 'json',
+                            contentType: false,
+                            processData: false,
+                            success: function (path) {
+
+                                var x = " '/temp/" + path.fname + "'"
+                                $("body").css("background-image", "url(" + x + ")");
+                                $("#backgroundImageUrl").val(x);
+                                imgLoadcomplete = true;
+
+                            },
+                            error: function () {
+                                errList[countr] = "An Error has occured setting the background image";
+                                countr++;
+                                imgLoadcomplete = true;
+
+                            }
+                        });
+                    }
+
+
+                }
+                //If the color radio button is selected check to ensure the color chosen is a valid color and set the value to pass if it is
+                else if (radValue === "color") {
+
+                    var color = $("#color").val();
+
+                    $("#colorTest").css("background-color", color)
+
+                    if ($("#colorTest").css("background-color") === "rgba(0, 0, 0, 0)") {
+
+                        errList[countr] = "Background color is not set to a valid color";
+                        countr++;
+                    }
+                    else {
+                        $("#colorTemp").val(color);
+
+                    }
+                }
+
+                //Ensure that all icons have been chosen and there is no empty icons and set them in the controller, if a custom logo is uploaded the corresponding variable will have the value 'custom'
+                if (mainLoc != "" && infoLoc != "" && twitterLoc != "" && redditLoc != "" && facebookLoc != "" && bitbucketLoc != "" && saveLoc != "" && garbageLoc != "" && arrowLeftLoc != "" && arrowRightLoc != "" && arrowUpLoc != "" && arrowDownLoc != "") {
+                    var logos = { "mrmLogo": mainLoc, "infoLogo": infoLoc, "twitterLogo": twitterLoc, "redditLogo": redditLoc, "facebookLogo": facebookLoc, "gitLogo": bitbucketLoc, "saveLogo": saveLoc, "garbageLogo": garbageLoc, "arrowLogoLeft": arrowLeftLoc, "arrowLogoRight": arrowRightLoc, "arrowLogoUp": arrowUpLoc, "arrowLogoDown": arrowDownLoc }
+                    //var tt = [mainLoc, infoLoc, twitterLoc, redditLoc, facebookLoc, bitbucketLoc, saveLoc]
+
+
+                    iconsChanged = false;
+                    $.ajax({
+                        type: "POST",
+                        url: "/User/setIcons",
+                        data: logos,
+                        dataType: 'html',
+                        error: function () {
+                            iconsChanged = true;
+                        },
+                        success: function () {
+                            iconsChanged = true;
+                        }
+                    });
+
+
+                }
+                else {
+                    errList[countr] = "One or more icons have not been chosen";
+                    countr++;
+
+                }
+
+                //Ensure that the chosen text color is valid
+                if ($("#textColorPicker input[type=checkbox]").is(':checked')) {
+                    $("#colorTest").css("background-color", $("#textColor").val())
+
+                    if ($("#colorTest").css("background-color") === "rgba(0, 0, 0, 0)") {
+
+                        errList[countr] = "Text color is not set to a valid color";
+                        countr++;
+                    }
+                    else
+                        $("#textColorTemp").val($("#textColor").val())
+                }
+
+
+
+
+                //Ensure that the chosen foreground color is valid
+                if ($("#foreGroundBox input[type=checkbox]").is(':checked')) {
+                    $("#colorTest").css("background-color", $("#foregroundBoxHexCode").val())
+
+                    if ($("#colorTest").css("background-color") === "rgba(0, 0, 0, 0)") {
+
+                        errList[countr] = "Foreground box color is not set to a valid color";
+                        countr++;
+                    }
+                    else
+                        $("#foregroundBoxHexCodeTemp").val($("#foregroundBoxHexCode").val())
+                }
+
+
+                //Ensure that the chosen input color is valid
+                if ($("#inputColor input[type=checkbox]").is(':checked')) {
+                    $("#colorTest").css("background-color", $("#inputHexCode").val())
+
+                    if ($("#colorTest").css("background-color") === "rgba(0, 0, 0, 0)") {
+
+                        errList[countr] = "Text color is not set to a valid color";
+                        countr++;
+                    }
+                    else
+                        $("#inputHexCodeTemp").val($("#inputHexCode").val())
+
+                }
+
+
+                //Ensure that the chosen contrast box color is valid
+                if ($("#contrastBox input[type=checkbox]").is(':checked')) {
+                    $("#colorTest").css("background-color", $("#contrastBoxColor").val())
+
+                    if ($("#colorTest").css("background-color") === "rgba(0, 0, 0, 0)") {
+
+                        errList[countr] = "Contrast box color is not set to a valid color";
+                        countr++;
+                    }
+                    else
+                        $("#contrastBoxColorTemp").val($("#contrastBoxColor").val())
+                }
+
+
+
+                //Ensure that the chosen hr line color is valid
+                if ($("#lineColor input[type=checkbox]").is(':checked')) {
+                    $("#colorTest").css("background-color", $("#hrColor").val())
+
+                    if ($("#colorTest").css("background-color") === "rgba(0, 0, 0, 0)") {
+
+                        errList[countr] = "The Line color is not set to a valid color";
+                        countr++;
+                    }
+                    else
+                        $("#hrColorTemp").val($("#hrColor").val())
+                }
+
+
+                $("#colorTest").remove();
+
+                $("#opt_showUpInSearch").val(ddValue);
+
+
+                if ($("#numOfRecipes").val() === "") {
+                    errList[countr] = "Number of recipes per page cannot be blank";
+                    countr++;
+                }
+
+                $("#createPreset").val(presetName);
+            }
+            $("#radValueBox").val(radValue)
+            if (countr == 0) {
+                $("#savingOptions").removeClass("offPage");
+                $("#subForm").prop("disabled", true);
+                $("#manualSet").prop("disabled", true);
+                $("#presetSet").prop("disabled", true);
+                setInterval(pulse, 1000);
+                if (imgLoadcomplete == false || iconsChanged == false) {
+                    setTimeout(function () {
+                        if (imgLoadcomplete == false || iconsChanged == false) {
+                            errList[countr] = "An error has occured when uploading images. Please try again later";
+                            countr++;
+                        } else {
+                            if (countr == 0) {
+                                $("#changeTheme").submit();
+                            }
+                            else
+                                for (i = 0; i < countr; i++)
+                                    $("#validationSumm ul").append("<li>" + errList[i] + "</li>")
+
+                        }
+
+
+                    }, 2000);
+                }
+                else {
+                    if (countr == 0) {
+                        $("#changeTheme").submit();
+                    }
+                    else
+                        for (i = 0; i < countr; i++)
+                            $("#validationSumm ul").append("<li>" + errList[i] + "</li>")
+                }
+            }
+            else
+                for (i = 0; i < countr; i++)
+                    $("#validationSumm ul").append("<li>" + errList[i] + "</li>")
+
+
+
+
+        });
+
+
+        //Display an image to explain the contrast box color color spinner
+        $("#contrastHelp").on("click", function () {
+
+            $("#contrastBox").prepend("<img class='contrastImg' src=\"/Icons/contrast.JPG\" style=\"position: absolute;left: 36%;top: 129%;border: 1px solid black;\" />");
+            $(".contrastImg").hide().fadeIn(1000);
+
+            setTimeout(
+             function () {
+
+                 $(".contrastImg").fadeOut(1000); ;
+                 $(".contrastImg").delay(1100, function () { $(".contrastImg").remove();})
+
+             }, 200
+            );
+        })
+
+
+
+
+
+
+        //Animate the helper icons for the input color and opacity changer
+        //
+        //
+        //
+        //
+        var inputHelper = 0;
+        $("#inputHelp").on("click", function () {
+            if (inputHelper == 0) {
+                $("<img class='inputMarker' style=' height:40px' src='" + arrowLeftLoc + "'/>").hide().insertAfter("#mainContent .opacity").fadeIn(1000)
+                inputHelper = 1;
+            }
+
+
+            setTimeout(
+              function () {
+
+                  $(".inputMarker").each(function () { $(this).fadeOut(1000); });
+                  $(".inputMarker").delay(1100, function () { $(".inputMarker").remove(); inputHelper = 0 })
+
+              }, 2000);
+
+        })
+
+        //Animate the helper icons for the foregroundbox color and opacity changer
+        var foregroundHelper = 0;
+        $("#foregroundHelp").on("click", function () {
+
+            if (foregroundHelper == 0) {
+                $("<img class='foregroundBoxMarker' style='left: 9.5%;height: 40px;top: 52%;position: absolute;' src='" + arrowRightLoc + "'/>").hide().insertAfter("#innerDiv").fadeIn(1000)
+                $("<img class='foregroundBoxMarker' style='left: 9.5%;height: 40px;top: 99%;position: absolute;' src='" + arrowRightLoc + "'/>").hide().insertAfter("#innerDiv").fadeIn(1000)
+                $("<img class='foregroundBoxMarker' style='right: 9.5%; height: 40px; top: 52%; position:absolute;' src='" + arrowLeftLoc + "'/>").hide().insertAfter("#innerDiv").fadeIn(1000)
+                $("<img class='foregroundBoxMarker' style='right: 9.5%; height: 40px; top: 99%; position:absolute;' src='" + arrowLeftLoc + "'/>").hide().insertAfter("#innerDiv").fadeIn(1000)
+                foregroundHelper = 1;
+            }
+
+            setTimeout(
+              function () {
+
+
+                  $(".foregroundBoxMarker").each(function () { $(this).fadeOut(1000) })
+
+                  $(".foregroundBoxMarker").delay(1100, function () { $(".foregroundBoxMarker").remove(); foregroundHelper = 0; })
+
+              }, 2000);
+        })
+
+
+        //Animate the helper icons for the hr color and opacity changer
+        var hrHelper = 0;
+        $("#hrHelp").on("click", function () {
+            if (hrHelper == 0) {
+                $("<img class='hrMark' style='position:absolute; left:50%; height:40px' src='" + arrowUpLoc + "'/>").hide().appendTo("hr").fadeIn(1000)
+                hrHelper = 1;
+            }
+
+            setTimeout(
+              function () {
+                  $(".hrMark").each(function () { $(this).fadeOut(1000) })
+
+                  $(".hrMark").delay(1100, function () { $(".hrMark").remove(); hrHelper = 0; })
+
+              }, 2000);
+
+        })
+
+
+
+
+    });
+</script>

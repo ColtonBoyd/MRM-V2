@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3adfc734f72342a2b63e1046b5fd265d" Name="Diagram1">
+        <EntityTypeShape EntityType="rdbModel.Appliances_Used" Width="1.5" PointX="7.5" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.AppliancesList" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.AspNetRole" Width="1.5" PointX="0.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.AspNetUser" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.C__MigrationHistory" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.Comment" Width="1.5" PointX="10.5" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.Dietary_Tags" Width="1.5" PointX="7.5" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.Ingredient" Width="1.5" PointX="7.5" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.IngredientsList" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.Invitation" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.Liked_Recipes" Width="1.5" PointX="10.5" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.Picture" Width="1.5" PointX="7.5" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.Recipe" Width="1.5" PointX="5.25" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.Report" Width="1.5" PointX="5.25" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.Security_Questions" Width="1.5" PointX="5.25" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.tagsList" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.ThemeGallery" Width="1.5" PointX="5.25" PointY="37.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.User_Defined_Tags" Width="1.5" PointX="7.5" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="rdbModel.UserOption" Width="1.5" PointX="5.25" PointY="45.375" IsExpanded="true" />
+        <AssociationConnector Association="rdbModel.FK_Appliances_Recipes" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.FK_Comments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.FK_Liked_Recipes_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.FK_Options_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.FK_Recipes_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.FK_Reports_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.FK_Security_Questions_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.FK_ThemeGallery_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.FK_Comments_Recipes" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.FK_Dietary_Tags_Recipes" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.FK_Ingredients_Recipes" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.FK_Liked_Recipes_Recipes" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.FK_Pictures_Recipes" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.FK_User_Defined_Tags_Recipes" ManuallyRouted="false" />
+        <AssociationConnector Association="rdbModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

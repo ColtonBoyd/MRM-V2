@@ -1,0 +1,1111 @@
+﻿@model MRMV2.Models.AddRecipeViewModel
+@{
+    ViewBag.Title = "Add A Recipe";
+}
+<style>
+    body {
+        
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    .input-group-btn {
+        width: 0%;
+    }
+
+    .container {
+        max-width: 80%;
+    }
+
+    #galleryWindow {
+        background-color: grey;
+        width: 72%;
+        margin-right: 1%;
+        float: right;
+    }
+
+        #galleryWindow img {
+            width: 100%;
+            height: 100%;
+            max-height: 600px;
+        }
+
+    #gallery {
+        width: 25%;
+        background: rgba(128, 128, 128, 0.3);
+        filter: alpha(opacity=50);
+        overflow-y: auto;
+        float: left;
+        margin-left: 1%;
+    }
+
+        #gallery img {
+            width: 45%;
+        }
+
+        #gallery ul {
+            overflow-y: auto;
+            padding-left: 1%;
+            text-align: center;
+        }
+
+        #gallery li {
+            display: inline;
+            padding-right: 2%;
+        }
+
+            #gallery li img {
+                margin-top: 1%;
+            }
+
+    #imageUpload {
+        border: 1px dashed white;
+        float: right;
+        width: 72%;
+        margin-right: 1%;
+        text-align: center;
+        margin-top: .5%;
+    }
+
+        #imageUpload label {
+            margin-left: auto;
+            margin-right: auto;
+            width: 6em;
+            display: block;
+            margin-top: 3%;
+        }
+
+
+    .ingredientsGroups {
+        margin-right: 2%;
+        width: 25%;
+        float: left;
+    }
+
+
+
+
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .offPage > * {
+        overflow: hidden !important;
+        position: absolute !important;
+        left: -200% !important;
+    }
+
+    .offPage {
+        overflow: hidden !important;
+        position: absolute !important;
+        left: -200% !important;
+    }
+
+
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        padding: 6px 12px;
+        background-color: gainsboro;
+        cursor: pointer;
+    }
+
+    #recipeName {
+        max-width: 100%;
+        width: 100%;
+        height: 35px;
+        background-color: #0A0D0B;
+        border: none;
+        text-align: center;
+    }
+
+
+
+    #area {
+        width: 100%;
+        margin-left: 5.25%;
+    }
+
+        #area img {
+            margin-top: 5px;
+            float: left;
+            width: 25px;
+        }
+
+    h1, h2, h3, h4, h5, h6, #recipeName {
+        color: white;
+    }
+
+
+    .active {
+        padding: 15px;
+        border-radius: 15px;
+        min-height: 700px;
+        position: relative;
+    }
+
+    .next {
+        position: absolute;
+        bottom: 13px;
+        right: 12px;
+    }
+
+    .prev {
+        position: absolute;
+        bottom: 13px;
+        left: 12px;
+    }
+
+    .tip {
+        position: absolute;
+        bottom: 0px;
+        text-align: center;
+        left: 0;
+        right: 0;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+
+        .tip img {
+            width: 25px;
+            border: 1px solid black;
+        }
+
+    #appliancesBox ul, #TagsBox ul {
+        display: inline;
+        list-style-type: none;
+    }
+
+    #appliancesBox li, #TagsBox li {
+        float: left;
+        margin-right: 3px;
+        margin-bottom: 5px;
+    }
+
+    #submitRecipe {
+        position: absolute;
+        bottom: 13px;
+        right: 12px;
+    }
+
+    #mainForm {
+        border-radius: 15px;
+    }
+</style>
+
+
+
+
+@using (Html.BeginForm("AddRecipe", "Recipes", FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "mainForm" }))
+{
+    @Html.AntiForgeryToken()
+    <br />
+
+
+
+
+
+    <div id="firstPage" class="active">
+        <h2>Enter the name of the recipe Below.</h2>
+        @Html.TextBoxFor(m => m.recipeName, new { @id = "recipeName", @Autocomplete = "off", @placeholder = "Zesty Greek Salad" })
+        <br />
+        <h2>Please enter a description for the recipe in the box below.</h2>
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @style = "max-width:100%; min-height:300px; resize:none" })
+        <input type="button" id="next" class="next btn btn-default" value="Next Step" />
+        <h4 class="tip"><img />Click 'next step' to advance to the next step.</h4>
+    </div>
+
+    <div class="offPage">
+        <div>
+            @Html.TextBoxFor(m => m.applianceUsed, new { @id = "textApplList" })
+            @Html.TextBoxFor(m => m.Tags, new { @id = "textTagList" })
+            @Html.TextBoxFor(m => m.recipeVisibility, new { @id = "recipeVisibility", @readonly = "true" })
+        </div>
+    </div>
+    <div id="secondPage">
+
+
+
+        <h2>Add Ingredients to the recipe. </h2>
+
+
+        <div id="area">
+
+            <div class="ingredientsGroups">
+
+                <div>
+                    @Html.TextBoxFor(m => m.Measurement, new { @maxlength = "40", @class = "form-control cups", @style = "width:33%; float:left", @Placeholder = "2 1/2 cups", @Autocomplete = "off" })
+                    @Html.TextBoxFor(m => m.Ingredient_Name, new { @maxlength = "40", @class = "form-control ingInput", @style = "width:55%; float:left;", @Placeholder = "Tomato", @Autocomplete = "off" })
+                    <img class="trashCan" />
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <input type="button" style="float:right" class="btn btn-default" value="Add Ingredient" id="addIngredient" />
+        <h4 class="tip"><img />Up to 36 ingredients can be added to the recipe.<br />Click the trashcan to remove an ingredient.</h4>
+        <input type="button" id="prev" class="prev btn btn-default" value="Previous Step" />
+        <input type="button" id="next" class="next btn btn-default" value="Next Step" />
+
+    </div>
+    <div id="thirdPage">
+        <h2>Add Instructions to the recipe.</h2>
+        @Html.TextAreaFor(m => m.Instructions, new { @class = "form-control", @style = "max-width:100%; min-height:300px; resize:none;" })
+        <h2>How Long does it take to fully prepare and cook this recipe?</h2>@Html.TextBoxFor(m => m.time, new { @class = "form-control ingInput", @style = "width:25%; ", @Placeholder = "10 minutes", @Autocomplete = "off", @id = "time" })
+        <input type="button" id="prev" class="prev btn btn-default" value="Previous Step" />
+        <input type="button" id="next" class="next btn btn-default" value="Next Step" />
+        <h4 class="tip"><img />Number instructions for easy reading.</h4>
+    </div>
+    <div id="fourthPage">
+
+        <div class="form-group">
+
+            <h2>What appliances were used in the making of the recipe?</h2>@Html.TextBoxFor(m => m.applianceUsed, new { @maxlength = "35", @class = "form-control", @style = "max-width:100%;float:left;position:relative;z-index:1;", @Placeholder = "What Appliances were used?", @Autocomplete = "off", @id = "applianceUsed" })
+
+
+            <div style="width:100%;float:left;">
+                <div id="appliancesBox" style="width:100%;float:right;margin-top:1%;margin-bottom: 14%;"><ul></ul></div>
+            </div>
+
+        </div>
+        <div class="form-group">
+
+            <h2>Add tags to this recipe to help people find it.</h2>
+            @Html.TextBoxFor(m => m.Tags, new { @maxlength = "35", @class = "form-control", @style = "max-width:100%;float:left;position:relative;z-index:1;", @Placeholder = "Add Tags to your recipe!", @id = "Tags", @Autocomplete = "off" })
+            <div id="tagList" style="width:100%; position:relative"></div>
+            <h4 class="tip"><img />Tip: To remove a tag or appliance simply click on it.</h4>
+
+
+            <div style="float:left;">
+                <div id="TagsBox" style="width:100%;float:right;margin-top:1%"><ul></ul></div>
+            </div>
+
+        </div>
+        <input type="button" id="prev" class="prev btn btn-default" value="Previous Step" />
+        <input type="button" id="next" class="next btn btn-default" value="Next Step" />
+    </div>
+    <div id="sixthPage">
+
+        <h2>I would like my recipe to be :</h2>
+        <div id="public">
+            <span>Public</span>
+            <input type="radio" id="radvis" name="radvis" value="1" />
+        </div>
+        <div id="private">
+            <span>Private</span>
+            <input type="radio" id="radvis" name="radvis" value="0" />
+        </div>
+        <br />
+        <p>Setting the recipe public means that it can be viewed by other users and is eligible to show up on the front page.</p>
+        <p>Setting the recipe private means that it can be viewed by only you.</p>
+        @Html.ValidationSummary("", new { @class = "text-danger", @id = "validationSumm" })
+        <input type="button" id="prev" class="prev btn btn-default" value="Previous Step" />
+        <input type="button" id="submitRecipe" class="btn btn-default" value="Submit this Recipe" />
+    </div>
+    <div id="fifthPage">
+
+
+
+
+        <div id="gallery"><ul></ul></div>
+
+        <div id="galleryWindow"></div>
+        <div id="imageUpload">
+
+            @using (Html.BeginForm("Upload", "Recipes", FormMethod.Post, new { enctype = "multipart/form-data", id = "img", onsubmit = "return false;" }))
+                {
+                <label class="custom-file-upload">
+                    <input type="file" id="File" accept="image/*" name="File" multiple />
+                    Click.
+                </label>
+            }
+            <span>Or<br />Drop</span>
+
+        </div>
+
+
+        <h4 class="tip"><img />Click on the image on the right panel to rotate it.</h4>
+        <input type="button" id="prev" class="prev btn btn-default" value="Previous Step" />
+        <input type="button" id="next" class="next btn btn-default" value="Next Step" />
+    </div>
+
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+<script>
+
+    const originalTable = $('#area').html();
+    var totalFields = 3;
+    var images = false;
+    var image = [];
+    var availableIngredients = [];
+    var availableAppliances = [];
+    var availableTags = [];
+    var applianceOriginalLength = 0;
+    var TagOriginalLength = 0;
+    var addedTags = new Array();
+    var addedAppliances = [];
+    var tagInc = 0;
+    var applInc = 0;
+    var imgRotationDegrees = 0;
+    var imagesIdIncrement = 1;
+
+    //Get a list of appliances
+    $(function () {
+
+        $.ajax({
+            type: "GET",
+            url: "/Recipes/SearchAppliances",
+            datatype: "html",
+            success: function (data) {
+                for (i = 0; i < data.length; i++) {
+                    availableAppliances[i] = data[i]
+                    applianceOriginalLength++;
+
+                }
+
+            }
+        });
+        //Add appliances to autocomplete and re add any appliances that were previously added
+        $("#applianceUsed").autocomplete({
+            source: availableAppliances,
+            select: function (event, ui) {
+
+
+                var t = false;
+                if (applInc > 0) {
+                    for (i = 0; i < applInc; i++) {
+                        if (addedAppliances[i] === ui.item.label) {
+
+                            t = true;
+                        }
+
+
+
+                    }
+                    if (t === false) {
+                        var b = applInc;
+                        $("#applianceUsed").val("");
+                        $("#appliancesBox ul").append("<li class=\"offPage\"><div id='delete' style='background-color:#0099ff; text-align:center; border-radius:10px; cursor:pointer; height:25px;' onclick='clickss(\"" + applInc + "\",\"appliance\",\"" + ui.item.label + "\")'>" + ui.item.label + "</div></li>");
+                        var dlength = $("#delete").textWidth();
+                        for (o = applInc; o > 1; o--) {
+                            if (dlength <= $("#appl" + (applInc - o)).textWidth()) {
+                                b = o
+                            }
+                        }
+                        if (b !== applInc)
+                            $("<li><div id='appl" + applInc + "' style='background-color:#0099ff; text-align:center; border-radius:10px; height:25px;' onclick='clickss(\"" + applInc + "\",\"appliance\",\"" + ui.item.label + "\")'>" + ui.item.label + "</div></li>").insertBefore($("#appliancesBox li:nth-of-type(" + b + ")"));
+                        else
+                            $("#appliancesBox ul").append("<li><div id='appl" + applInc + "' style='background-color:#0099ff; text-align:center; border-radius:10px; cursor:pointer; height:25px;' onclick='clickss(\"" + applInc + "\",\"appliance\",\"" + ui.item.label + "\")'>" + ui.item.label + "</div></li>");
+                        $("#delete").parent().remove()
+                        $("#appl" + applInc).width($("#appl" + applInc).textWidth() + 25);
+                        event.preventDefault();
+                        addedAppliances[applInc] = ui.item.label;
+                        applInc++;
+                    }
+                    else {
+                        toast("That appliance has already been added", 2000);
+                        event.preventDefault()
+                        $("#applianceUsed").val("");
+
+                    }
+                }
+                else {
+                    $("#appliancesBox ul").append("<li><div id='appl" + applInc + "' style='background-color:#0099ff; text-align:center; border-radius:10px; height:25px;' onclick='clickss(\"" + applInc + "\",\"appliance\",\"" + ui.item.label + "\")'>" + ui.item.label + "</div></li>");
+                    $("#appl" + applInc).width($("#appl" + applInc).textWidth() + 15);
+                    event.preventDefault();
+                    $("#applianceUsed").val("");
+                    addedAppliances[applInc] = ui.item.label;
+                    applInc++;
+                }
+            }
+        });
+    });
+
+
+    //Get a list of tags
+    $(function () {
+
+        $.ajax({
+            type: "GET",
+            url: "/Recipes/SearchTags",
+            datatype: "html",
+            success: function (data) {
+                for (i = 0; i < data.length; i++) {
+                    availableTags[i] = data[i]
+                    TagOriginalLength++;
+                }
+            }
+        });
+        //Add tags to autocomplete and re add any tags that were previously added
+        $("#Tags").autocomplete({
+            source: availableTags,
+            select: function (event, ui) {
+
+
+
+
+
+                var t = false;
+                if (tagInc > 0) {
+                    for (i = 0; i < tagInc; i++) {
+                        if (addedTags[i] === ui.item.label) {
+
+                            t = true;
+                        }
+
+
+
+                    }
+                    if (t === false) {
+                        var b = tagInc;
+                        $("#Tags").val("");
+                        $("#TagsBox ul").append("<li class=\"offPage\"><div id='delete' style='background-color:#0099ff; text-align:center; border-radius:10px; height:25px;' onclick='clickss(\"" + tagInc + "\",\"tag\",\"" + ui.item.label + "\")'>" + ui.item.label + "</div></li>");
+                        var dlength = $("#delete").textWidth();
+                        for (o = tagInc; o > 1; o--) {
+
+                            if (dlength <= $("#tag" + (tagInc - o)).textWidth()) {
+                                b = o
+                            }
+                        }
+                        if (b !== tagInc)
+                            $("<li><div id='tag" + tagInc + "' style='background-color:#0099ff; text-align:center; border-radius:10px; height:25px;' onclick='clickss(\"" + tagInc + "\",\"tag\",\"" + ui.item.label + "\")'>" + ui.item.label + "</div></li>").insertBefore($("#TagsBox li:nth-of-type(" + b + ")"));
+                        else
+                            $("#TagsBox ul").append("<li><div id='tag" + tagInc + "' style='background-color:#0099ff; text-align:center; border-radius:10px; height:25px;' onclick='clickss(\"" + tagInc + "\",\"tag\",\"" + ui.item.label + "\")'>" + ui.item.label + "</div></li>");
+                        $("#delete").parent().remove()
+                        $("#tag" + tagInc).width($("#tag" + tagInc).textWidth() + 25);
+                        event.preventDefault();
+                        addedTags[tagInc] = ui.item.label;
+                        tagInc++;
+                    }
+                    else {
+                        toast("That Tag has already been added", 2000);
+                        event.preventDefault()
+                        $("#Tags").val("");
+
+                    }
+                }
+                else {
+                    $("#TagsBox ul").append("<li><div id='tag" + tagInc + "' style='background-color:#0099ff; text-align:center; border-radius:10px; height:25px;' onclick='clickss(\"" + tagInc + "\",\"tag\",\"" + ui.item.label + "\")'>" + ui.item.label + "</div></li>");
+                    $("#tag" + tagInc).width($("#tag" + tagInc).textWidth() + 15);
+                    event.preventDefault();
+                    $("#Tags").val("");
+                    addedTags[tagInc] = ui.item.label;
+                    tagInc++;
+                }
+
+
+            }
+        });
+    });
+
+
+
+    //Populate the autofill list for ingredients
+    $.ajax({
+        type: "GET",
+        url: "/Recipes/AutoIngredient",
+        datatype: "html",
+        success: function (data) {
+            for (i = 0; i < data.length; i++)
+                availableIngredients[i] = data[i]
+        }
+    });
+
+    //Set width of Appliances/Tags tag
+    $.fn.textWidth = function () {
+        var html_org = $(this).html();
+        var html_calc = '<span>' + html_org + '</span>';
+        $(this).html(html_calc);
+        var width = $(this).find('span:first').width();
+        $(this).html(html_org);
+        return width;
+    };
+
+
+    //Calculate width required for tags and appliances backgrounds
+    wid = $("#area").width();
+    $("#textTagList").prop("readonly", true);
+    $("#textApplList").prop("readonly", true);
+    $("#textApplList").prop("tabindex", -1);
+    $("#textTagList").prop("tabindex", -1);
+    wid = Math.floor(wid / 350);
+
+    var checkedValue = null;
+
+    //Left and right arrow keys to navigate the pages
+    $(document).keyup(function (e) {
+        if (!($("input, textarea").is(":focus"))) {
+
+            switch (e.which) {
+                case 37: // left
+
+                    $("#prev").click();
+
+                    break;
+
+                case 39: // right
+                    $("#next").click();
+
+                    break;
+
+                default: return;
+            }
+            e.preventDefault();
+        }
+    });
+
+
+    $("input[name=radvis]:radio").change(function () {
+
+        checkedValue = this.value
+
+    })
+
+
+
+    //Copy value of original table 3 times to data.
+    //Original Table is an ingredient field
+    var data = "";
+    for (b = 0; b < 3; b++) {
+        data += originalTable
+    }
+
+    $("#area").html(data);
+    var currentPage = 1;
+    //On the next button clicked or the right arrow key pressed
+    $(".next").on("click", function () {
+
+        if (currentPage < 6) {
+            switch (currentPage) {
+                case 1:
+                    $("#secondPage").removeClass("offPage");
+                    $("#firstPage").removeClass("active");
+                    $("#firstPage").addClass("offPage");
+                    $("#secondPage").addClass("active");
+                    $("#secondPage div").removeClass("offPage");
+                    removeIndex();
+                    $("#secondPage *").attr("tabindex", "");
+                    break;
+                case 2:
+                    $("#secondPage").addClass("offPage");
+                    $("#secondPage div").addClass("offPage");
+                    $("#secondPage").removeClass("active");
+                    $("#thirdPage").removeClass("offPage");
+                    $("#thirdPage").addClass("active");
+                    removeIndex();
+                    $("#thirdPage *").attr("tabindex", "");
+
+                    break;
+                case 3:
+                    $("#thirdPage").addClass("offPage");
+                    $("#thirdPage").removeClass("active");
+                    $("#fourthPage").removeClass("offPage");
+                    $("#fourthPage").addClass("active");
+                    removeIndex();
+                    $("#fourthPage *").attr("tabindex", "");
+                    break;
+                case 4:
+                    $("#fourthPage").addClass("offPage");
+                    $("#fourthPage").removeClass("active");
+                    $("#fifthPage").removeClass("offPage");
+                    $("#fifthPage div").removeClass("offPage");
+                    $("#fifthPage").addClass("active");
+                    var x = $("#fifthPage").innerHeight() - 100;
+                    var y = x;
+                    $("#gallery").css("height", x);
+                    x = x * .80
+                    $("#galleryWindow").css("height", x);
+                    y = y * .195;
+                    $("#imageUpload").css("height", y);
+                    removeIndex();
+                    $("#fifthPage *").attr("tabindex", "");
+
+                    break;
+                case 5:
+                    $("#fifthPage").addClass("offPage");
+                    $("#fifthPage div").addClass("offPage");
+                    $("#fifthPage").removeClass("active");
+                    $("#sixthPage").removeClass("offPage");
+                    $("#sixthPage").addClass("active");
+                    removeIndex();
+                    $("#sixthPage *").attr("tabindex", "");
+
+                    break;
+            } currentPage++;
+        }
+    })
+
+
+    //On the previous button clicked or the left arrow
+    $(".prev").click(function () {
+        if (currentPage > 1) {
+            switch (currentPage) {
+                case 1:
+                    toast("Mysterious... Please Refresh the page", 3000);
+                    break;
+                case 2:
+                    $("#firstPage").removeClass("offPage");
+                    $("#firstPage").addClass("active");
+                    $("#secondPage").addClass("offPage");
+                    $("#secondPage").removeClass("active");
+
+                    removeIndex();
+                    $("#firstPage *").attr("tabindex", "")
+                    break;
+                case 3:
+                    $("#secondPage").removeClass("offPage");
+                    $("#secondPage div").removeClass("offPage");
+                    $("#secondPage").addClass("active");
+                    $("#thirdPage").addClass("offPage");
+                    $("#thirdPage").removeClass("active");
+                    removeIndex();
+                    $("#secondPage *").attr("tabindex", "");
+                    break;
+                case 4:
+                    $("#thirdPage").removeClass("offPage");
+                    $("#thirdPage").addClass("active");
+                    $("#fourthPage").addClass("offPage");
+                    $("#fourthPage").removeClass("active");
+                    removeIndex();
+                    $("#thirdPage *").attr("tabindex", "");
+                    break;
+                case 5:
+                    $("#fourthPage").removeClass("offPage");
+                    $("#fourthPage").addClass("active");
+                    $("#fifthPage").addClass("offPage");
+                    $("#fifthPage").removeClass("active");
+                    $("#fifthPage div").addClass("offPage");
+                    removeIndex();
+                    $("#fourthPage *").attr("tabindex", "");
+                    break;
+                case 6:
+                    $("#fifthPage").removeClass("offPage");
+                    $("#fifthPage").addClass("active");
+                    $("#fifthPage div").removeClass("offPage");
+                    $("#sixthPage").addClass("offPage");
+                    $("#sixthPage").removeClass("active");
+                    removeIndex();
+                    $("#fifthPage *").attr("tabindex", "");
+                    break;
+            } currentPage--;
+        }
+    })
+
+
+    //On recipe submit check to ensure there are valid values
+    $("#submitRecipe").click(function () {
+        var errList = [];
+        var count = 0;
+
+        $("#validationSumm ul").html("");
+
+
+        $("#area input").each(function (index) {
+
+            if ($(this).val() === "") {
+                if (count != 0) {
+                    if (errList[count - 1] != "Ingredients Field # " + (Math.floor(index / 2) + 1) + " is incomplete.") {
+                        errList[count] = "Ingredients Field # " + (Math.floor(index / 2) + 1) + " is incomplete."
+                        count++;
+                    }
+                }
+                else {
+                    errList[count] = "Ingredients Field # " + (Math.floor(index / 2) + 1) + " is incomplete."
+                    count++;
+                }
+            }
+
+
+        });
+
+
+
+        if (images === false) {
+            errList[count] = "There must be at least 1 image for this recipe"
+            count++;
+        }
+
+        if ($('#sixthPage input[type=radio]:checked').val() === undefined) {
+            errList[count] = "This recipe must be marked as public or private"
+            count++;
+        }
+
+        setLists();
+
+        for (z = 0; z < errList.length; z++)
+            $("#validationSumm ul").append("<li>" + errList[z] + "</li>")
+        if (errList.length === 0) {
+            $("#recipeVisibility").val(checkedValue)
+            $("#mainForm").submit();
+
+        }
+        else
+            toast("An error has occured.", 2000)
+    });
+
+
+
+
+    //On document load make the first page the only visible page
+    $(document).ready(function () {
+        $("#secondPage").addClass("offPage");
+        $("#thirdPage").addClass("offPage");
+        $("#fourthPage").addClass("offPage");
+        $("#fifthPage").addClass("offPage");
+        $("#sixthPage").addClass("offPage");
+        removeIndex();
+        $("#firstPage > *").attr("tabindex", "");
+
+    });
+
+    //Remove tab index on all pages
+    function removeIndex() {
+        $("#firstPage *").attr("tabindex", "-1");
+        $("#secondPage *").attr("tabindex", "-1")
+        $("#thirdPage *").attr("tabindex", "-1")
+        $("#fourthPage *").attr("tabindex", "-1")
+        $("#fifthPage *").attr("tabindex", "-1")
+        $("#sixthPage *").attr("tabindex", "-1");
+    }
+
+
+    //This is called on submition of recipe.
+    //Get the appliances and tags lists and submit them to the server.
+    function setLists() {
+
+
+
+        var tags = new Array();
+        for (var i = 0; i < addedTags.length; i++) {
+            tags[i] = addedTags[i];
+
+
+        }
+        var appl = new Array();
+        for (var i = 0; i < addedAppliances.length; i++) {
+            appl[i] = addedAppliances[i];
+
+        }
+
+
+
+
+        $.ajax({
+            type: "POST",
+            url: '/Recipes/setLists',
+            data: { "tags": tags, "appl": appl },
+            dataType: 'html',
+            success: function (response) {
+
+            }
+        });
+    }
+
+
+    //Remove an ingredient field
+    $(document).on('click', '#area img', function () {
+
+        if (totalFields > 1) {
+            $(this).parent().parent().remove();
+            totalFields--;
+        }
+    });
+
+    //On file upload call the uploadedImages method
+    $("#File").change(function () {
+        uploadImages("");
+    });
+
+
+    var uploadedNames = "";
+
+    //When the image upload button is pressed or an image is dragged and dropped into the upload area
+    function uploadImages(object) {
+        var selectedFiles = object;
+        var url = '/Recipes/Upload';
+        var formData = new FormData();
+        var totalFiles = document.getElementById("File").files.length;
+        var uid = "@ViewBag.UserID";
+
+        //If the user clicks the upload button selectedFiles will be "".
+        //If the user drags files onto the upload area selected files will be an array of the dragged files
+        if (selectedFiles === "") {
+            for (var i = 0; i < totalFiles; i++) {
+                var file = document.getElementById("File").files[i];
+                var filename = document.getElementById("File").files[i].name;
+                if (uploadedNames.indexOf(",../../temp/" + uid + filename + ",") == -1)
+                    formData.append("File" + i, file);
+                else
+                    toast("An image under the name " + filename + " already exists", 3000);
+            }
+        }
+        else {
+            for (var i = 0; i < selectedFiles.length; i++) {
+
+
+                if (uploadedNames.indexOf(",../../temp/" + uid + selectedFiles[i].name + ",") == -1) {
+                    formData.append("File" + i, selectedFiles[i]);
+                }
+                else
+                    toast("An image under the name " + selectedFiles[i].name + " already exists", 3000);
+            }
+
+        }
+        var tinc = 0;
+        formData.forEach(function (d) {
+
+            image[tinc] = { "image": d.name };
+            tinc++;
+        });
+
+        //Upload the pictures, on success add them to the left panel and open the latest one on the right panel
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: formData,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+
+                var wh = window.innerHeight;
+                wh = wh * .7;
+                var imgHeight = wh * .15;
+
+
+
+
+                for (var i = 0; i < response.names.length; i++) {
+
+                    $("#gallery ul").append("<li><img src=\"" + response.names[i] + "\" id=\"" + imagesIdIncrement + "\" onclick=\"Display('" + response.names[i] + "','" + imagesIdIncrement + "') \"/></li>");
+                    $("#galleryWindow").html("<img class='bigImage' id=\"big" + imagesIdIncrement + "\" src=\"" + response.names[i] + "\" />");
+                    imagesIdIncrement++;
+                    $("#gallery li img").css("height", imgHeight + "px")
+                    if (selectedFiles !== "")
+                        uploadedNames += "," + uid + selectedFiles[i].name + ",";
+                    else
+                        uploadedNames += "," + uid + document.getElementById("File").files[i].name; + ",";
+
+
+                    images = true;
+                }
+
+            },
+            error: function (error) {
+
+                toast("An error has occured", 2000);
+            }
+        });
+    }
+
+
+
+
+    //When an image on the left panel is clicked change the right panel to display the image
+    //ImgLoc is the source of the image and callerID is an incrementing id
+    //The ids on the left panel are 1,2,3 ext.
+    //The ids on the right panel are big1, big2, big3 ect.
+    function Display(ImgLoc, callerID) {
+        $("#ui-id-1").html(ImgLoc.substring(ImgLoc.indexOf("/") + 8, ImgLoc.length));
+        $("#galleryWindow").html("<img class='bigImage' id=\"big" + callerID + "\" src=\"" + ImgLoc + "\" />");
+        if ($("#" + callerID).css("transform") != "none") {
+            $("#big" + callerID).css("transform", $("#" + callerID).css("transform"))
+
+        }
+        imgRotationDegrees = 0;
+    }
+
+
+    //Rotate the image on click
+    $("body").on("click", ".bigImage", function () {
+        var imgName = $(this).prop("src");
+        var imageID = $(this).prop("id");
+        $.ajax({
+            type: "POST",
+            url: "/Recipes/rotateImage",
+            data: { src: imgName },
+            dataType: 'html',
+            success: function (response) {
+                imgRotationDegrees += 180;
+
+
+                var smallerImageID = imageID.substring(3);
+
+                if ($("#" + smallerImageID).css("transform") == "none" || $("#" + smallerImageID).css("transform") == "rotate(360deg)") {
+
+                    $("#" + smallerImageID).css({
+                        "transform": "rotate(" + imgRotationDegrees + "deg)",
+                        "-webkit-transform": "rotate(" + imgRotationDegrees + "deg)",
+                        "-moz-transform": "rotate(" + imgRotationDegrees + "deg)",
+                        "-o-transform": "rotate(" + imgRotationDegrees + "deg)",
+                        "-ms-transform": "rotate(" + imgRotationDegrees + "deg)"
+                    });
+
+                    $("#" + imageID).css({
+                        "transform": "rotate(" + imgRotationDegrees + "deg)",
+                        "-webkit-transform": "rotate(" + imgRotationDegrees + "deg)",
+                        "-moz-transform": "rotate(" + imgRotationDegrees + "deg)",
+                        "-o-transform": "rotate(" + imgRotationDegrees + "deg)",
+                        "-ms-transform": "rotate(" + imgRotationDegrees + "deg)"
+                    });
+                }
+                else {
+                    $("#" + smallerImageID).css("transform", "none")
+                    $("#" + smallerImageID).css("transform", "rotate(0deg)");
+                    $("#" + imageID).css("transform", "none");
+                    $("#" + imageID).css("transform", "rotate(0deg)");
+                }
+
+                if (imgRotationDegrees == 360)
+                    imgRotationDegrees = 0;
+
+
+
+            }
+        });
+
+    });
+
+
+    //Listeners for dragging an image onto the upload area
+    var box;
+    box = document.getElementById("imageUpload");
+    box.addEventListener("dragenter", OnDragEnter, false);
+    box.addEventListener("dragover", OnDragOver, false);
+    box.addEventListener("drop", OnDrop, false);
+
+
+
+    function OnDragEnter(e) {
+        e.stopPropagation();
+        e.preventDefault();
+    }
+
+    function OnDragOver(e) {
+        e.stopPropagation();
+        e.preventDefault();
+    }
+
+    function OnDrop(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        uploadImages(e.dataTransfer.files);
+
+
+
+    }
+
+
+
+    function prePopulateList() {
+        $(".ingInput").autocomplete({
+            source: availableIngredients,
+
+        });
+    };
+
+    prePopulateList();
+
+
+
+   
+
+    var inc = wid;
+    var getTextColor;
+    $("#addIngredient").on('click', function () {
+
+        if (getTextColor == null)
+            getTextColor = $('#secondPage  h2').css("color");
+
+
+        if (totalFields < 36) {
+
+            a = originalTable;
+            $(a).insertAfter("#area .ingredientsGroups:last-of-type")
+            var bkColor = $('.cups').first().css("background-color")
+            var canImage = $('.trashCan').first().prop("src")
+            $('.cups, .ingInput').css("background-color", "" + bkColor)
+            $('.cups, .ingInput').css("color", "" + getTextColor)
+            $('.trashCan').prop("src", canImage)
+            totalFields++;
+            prePopulateList();
+
+
+        }
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+    //Trigger the dropdown list on keyup for appliances
+    $("#applianceUsed").on("keyup", function () {
+
+        availableAppliances.length = applianceOriginalLength;
+
+        availableAppliances.push({
+            'label': $("#applianceUsed").val(),
+            'id': this.id.replace(/name_(\d+)/, '$1')
+        });
+
+    })
+
+
+    //Trigger the dropdown list on keyup for tags
+    $("#Tags").on("keyup", function () {
+
+        availableTags.length = TagOriginalLength;
+
+        availableTags.push({
+            'label': $("#Tags").val(),
+            'id': this.id.replace(/name_(\d+)/, '$1')
+        });
+
+    })
+
+
+
+
+    //This is called on click on a tag or appliance and removes it
+    function clickss(stringName, type, val) {
+
+        if (type === "tag") {
+
+            addedTags[stringName] = "";
+            $("#tag" + stringName).parent().remove();
+            $("#tagList").html("");
+            $("#Tags").val("");
+
+
+        }
+        else if (type === "appliance") {
+            addedAppliances[stringName] = "";
+            $('#appl' + stringName).parent().remove();
+            $("#appliancesList").html("");
+            $("#applianceUsed").val("");
+        }
+
+    };
+
+
+
+
+
+</script>

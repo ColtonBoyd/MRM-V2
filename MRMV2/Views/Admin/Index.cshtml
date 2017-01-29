@@ -1,0 +1,267 @@
+﻿@model IDTEST.Models.AdminPage
+@{
+    ViewBag.Title = "Admin";
+}
+
+<style>
+    #sendInvite input[type=button] {
+        float: left;
+    }
+
+    .form-control {
+        float: left;
+    }
+
+    #sendInvite {
+        margin-bottom: 80px;
+    }
+
+    .trashCan {
+        width: 20px;
+        float: right;
+    }
+
+    a, img, span {
+        cursor: pointer;
+    }
+
+    a {
+        color: cornflowerblue !important;
+    }
+
+    body {
+        position:relative;
+    }
+
+    #container {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        color: white;
+        padding-left: 2%;
+        overflow-y: scroll;
+    }
+
+    .container {
+        max-width: 70%;
+    }
+
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgb(255, 255, 255);
+    }
+
+
+    .inner {
+        background-color: rgba(255, 156, 34, 0.5);
+        border-radius: 5px;
+    }
+
+    .toastStyle {
+        
+        top: 90% !important;
+        
+    }
+</style>
+
+<div id="admin-container">
+
+    @if (@Model.recReports.Count != 0)
+    {
+        <h1>Recipes</h1>
+    }
+    @for (int i = 0; i < Model.recReports.Count; i++)
+    {
+
+        <div class="recipe">
+            <br />
+            <div class="inner @Model.recReports[i].Recipe_ID" id="@Model.recReports[i].Report_Id">
+                <img class="trashCan" alt="Delete this report" id="@Model.recReports[i].Report_Id">
+                <span class="recipeName">A Recipe called @Model.recReports[i].Recipe_Name was reported.</span>
+                <p></p>
+                <a class="recipeUrl" href="@Request.Url.Scheme://@Request.Url.Authority/Recipes/RecipeID/@Model.recReports[i].Recipe_ID">@Request.Url.Scheme://@Request.Url.Authority/Recipes/RecipeID/@Model.recReports[i].Recipe_ID</a>
+                <p></p>
+                <span class="recipeCreator">User who created the recipe: @Model.recReports[i].Content_Creator_Name</span>
+                <p></p>
+                <span class="recipeReporter">User who reported: @Model.recReports[i].Reporter_Name</span>
+                <p></p>
+                <span class="recipeReason">Reason for report: @Model.recReports[i].Reason_For_Report</span>
+                <p></p>
+                <a class="recipeRemove" onclick="Remove('','@Model.recReports[i].Recipe_ID', '@Model.recReports[i].Report_Id', '@Model.recReports[i].Type')">Remove Recipe</a>
+                <p></p>
+                <a class="recipeReporterBan" id="@Model.recReports[i].Reporter_Id">Ban reporting user</a>
+                <p></p>
+                <a class="recipeCreatorBan" id="@Model.recReports[i].Content_Creator_Id">Ban recipe creator</a>
+
+
+
+            </div>
+            <hr />
+        </div>
+    }
+    @if (Model.comReports.Count != 0)
+    {
+        <br /><h1>Comments</h1>
+    }
+    @for (int i = 0; i < Model.comReports.Count; i++)
+    {
+        <div class="comment">
+            <br />
+            <div class="inner @Model.comReports[i].Recipe_ID @Model.comReports[i].Comment_ID" id="@Model.comReports[i].Report_Id">
+                <img class="trashCan" alt="Delete this report" id="@Model.comReports[i].Report_Id">
+                <p></p>
+                Comment Made: @Model.comReports[i].Comment
+                <p></p>
+                User who added this comment: @Model.comReports[i].Content_Creator_Name
+                <p></p>
+                User who reported this comment: @Model.comReports[i].Reporter_Name
+                <p></p>
+                Reason for reporting: @Model.comReports[i].Reason_For_Report
+                <p></p>
+                <a onclick="Remove('@Model.comReports[i].Comment_ID','@Model.comReports[i].Recipe_ID','@Model.comReports[i].Report_Id','@Model.comReports[i].Type')">Remove Comment</a>
+                <p></p>
+                <a id="@Model.comReports[i].Reporter_Id">Ban reporting user</a>
+                <p></p>
+                <a id="@Model.comReports[i].Content_Creator_Id">Ban Commenter</a>
+            </div>
+            <hr />
+        </div>
+    }
+    @if (Model.comReports.Count == 0 && @Model.recReports.Count == 0)
+    {
+        <h1>There are no reports at this time</h1>
+    }
+
+    <br />
+    <h1>Invite a new Admin</h1>
+
+    @using (Html.BeginForm("inviteNewAdmin", "Account", FormMethod.Post, new { id = "sendInvite", @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.inviteEmail, new { @class = "form-control" })
+
+                <input type="button" value="Send Invite" class="btn btn-default" id="sendInviteButton" />
+
+            </div>
+            <div class="col-md-10">
+                @Html.ValidationMessageFor(m => m.inviteEmail, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+    }
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+<script type="text/javascript">
+
+
+
+    //Remove comment/recipe
+    function Remove(commentID, RecipeID, repid, rType) {
+
+        var comm = commentID,
+            recid = RecipeID;
+        $.ajax({
+            type: "POST",
+            url: '/Admin/Remove',
+
+            data: {
+                commentID: commentID,
+                recipeID: RecipeID,
+                reportID: repid,
+                type: rType
+
+            },
+            success: function () {
+
+                if (rType == "Recipe") {
+                    $("." + recid).parent().remove();
+                    toast("Recipe has been removed!", 2000);
+                }
+                else if (rType == "Comment") {
+                    $("." + comm).parent().remove();
+                    toast("Comment has been removed!", 2000);
+                }
+            },
+            failure: function () {
+                toast("An error has occured, Please try again later", 2000)
+            }
+
+
+        });
+    }
+
+    $("#sendInviteButton").on("click", function () {
+        if ($("#inviteEmail").val() == "") {
+            toast("Please Enter an email to send an invite", 2000)
+        }
+        else
+            $("#sendInvite").submit();
+    })
+
+    //If 'Ban reporting user', 'Ban recipe creator' or 'Ban commenter' is clicked, this is triggered
+    //This sends the id of the user to be banned
+    //This recieves back a message saying that the user has been banned
+    $(".recipe a:nth-of-type(3),.recipe a:nth-of-type(4),.comment a:nth-of-type(2),.comment a:nth-of-type(3)").on("click", function () {
+        var reportingUserId = $(this).prop("id");
+        if (reportingUserId != "") {
+            $.ajax({
+                type: "POST",
+                url: '/Admin/banUser',
+                data: { id: reportingUserId },
+                success: function (data) {
+                    if (data.success != "")
+                        toast(data.success, 2000)
+                }
+
+
+            });
+        }
+    })
+
+
+
+
+    //Remove the report
+    $(".trashCan").on("click", function () {
+        var reportID = $(this).prop("id");
+        if (reportID != "") {
+            $.ajax({
+                type: "POST",
+                url: '/Admin/removeReport',
+                data: { id: reportID },
+                success: function () {
+                    toast("Report has been removed", 2000)
+                    $("#" + reportID).parent().remove();
+                }
+
+
+            });
+        }
+    })
+
+
+
+
+</script>

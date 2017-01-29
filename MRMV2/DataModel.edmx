@@ -1,0 +1,1462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="rdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Appliances_Used">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Appliance_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Recipe_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Appliance_Name_Search" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppliancesLists">
+          <Key>
+            <PropertyRef Name="Appliance_Id" />
+          </Key>
+          <Property Name="Appliance_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Appliance_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Occurances" Type="int" />
+          <Property Name="Start_Date" Type="datetime" />
+          <Property Name="Permenant" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="User_Picture_Path" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Account_Status" Type="int" />
+          <Property Name="Number_Of_Recipes_Per_Page" Type="int" />
+          <Property Name="Show_User_Comments" Type="int" />
+          <Property Name="User_Description" Type="varchar" MaxLength="600" />
+          <Property Name="Roles" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Banned" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Ban_Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="Comment_ID" />
+          </Key>
+          <Property Name="Comment_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Recipe_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Comment_Date" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dietary_Tags">
+          <Key>
+            <PropertyRef Name="Special_Tag_ID" />
+          </Key>
+          <Property Name="Special_Tag_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Recipe_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Special_Dietary_Tags" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ingredients">
+          <Key>
+            <PropertyRef Name="Recipe_Ingredient_ID" />
+          </Key>
+          <Property Name="Recipe_Ingredient_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Recipe_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Ingredient_Name" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Measurement" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Ingredient_Name_Search" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IngredientsLists">
+          <Key>
+            <PropertyRef Name="Ingredient_ID" />
+          </Key>
+          <Property Name="Ingredient_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ingredient_Name" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invitations">
+          <Key>
+            <PropertyRef Name="Invite_Id" />
+          </Key>
+          <Property Name="Invite_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="End_Date" Type="datetime" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Liked_Recipes">
+          <Key>
+            <PropertyRef Name="Liked_Recipe_ID" />
+            <PropertyRef Name="Recipe_ID" />
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="Liked_Recipe_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Recipe_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="User_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Date_Liked" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pictures">
+          <Key>
+            <PropertyRef Name="Picture_ID" />
+          </Key>
+          <Property Name="Picture_ID" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Picture_Location" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Recipe_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recipes">
+          <Key>
+            <PropertyRef Name="Recipe_ID" />
+          </Key>
+          <Property Name="Recipe_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Recipe_Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Recipe_Short_Description" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Recipe_Description" Type="varchar" MaxLength="900" Nullable="false" />
+          <Property Name="Cooking_Time" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Recipe_Visibility" Type="int" Nullable="false" />
+          <Property Name="Date_Uploaded" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Number_Of_Views" Type="int" Nullable="false" />
+          <Property Name="Instructions" Type="varchar" MaxLength="700" Nullable="false" />
+          <Property Name="Display_Picture_Location" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="User_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Recipe_Search_Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Cooking_Time_Search_Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reports">
+          <Key>
+            <PropertyRef Name="Report_Id" />
+          </Key>
+          <Property Name="Report_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Comment_Or_Recipe_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Reason_For_Report" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Content_Creator_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Reporter_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Content_Creator_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Reporter_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Recipe_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Recipe_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Comment_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Security_Questions">
+          <Key>
+            <PropertyRef Name="Security_Question_ID" />
+          </Key>
+          <Property Name="Security_Question_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Security_Question" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Security_Answer" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="User_ID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="tagsLists">
+          <Key>
+            <PropertyRef Name="tag_id" />
+          </Key>
+          <Property Name="tag_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tag_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Occurances" Type="int" />
+          <Property Name="start_Date" Type="datetime" />
+          <Property Name="permanant" Type="int" Nullable="false" />
+          <Property Name="AlphaTag" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="ThemeGallery">
+          <Key>
+            <PropertyRef Name="Theme_Id" />
+          </Key>
+          <Property Name="Theme_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="User_Custom_Theme" Type="int" Nullable="false" />
+          <Property Name="Text_Color" Type="varchar" MaxLength="21" Nullable="false" />
+          <Property Name="Background_Color" Type="varchar" MaxLength="21" Nullable="false" />
+          <Property Name="Contrast_Box_Background_Color" Type="varchar" MaxLength="21" Nullable="false" />
+          <Property Name="Background_Image" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Background_Box_Color" Type="varchar" MaxLength="21" Nullable="false" />
+          <Property Name="Background_Box_Opacity" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Background_Color_Opacity" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Contrast_Box_Background_Color_Opacity" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Background_Image_Color_Or_Theme" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Input_Color" Type="varchar" MaxLength="21" Nullable="false" />
+          <Property Name="Input_Opacity" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="User_Id" Type="nvarchar" MaxLength="128" />
+          <Property Name="Permenant" Type="int" Nullable="false" />
+          <Property Name="Hr_Color" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Logo_Facebook" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Logo_Twitter" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Logo_Reddit" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Logo_BitBucket" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Logo_Main" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Logo_Info" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Theme_Icon_Path" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Logo_Save" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Logo_Garbage" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Arrow_Left" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Arrow_Right" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Arrow_Up" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Arrow_Down" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Defined_Tags">
+          <Key>
+            <PropertyRef Name="Tag_ID" />
+          </Key>
+          <Property Name="Tag_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Recipe_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="User_Defined_Tag" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Defined_Tag_Search" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserOptions">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Search_Visibility" Type="int" Nullable="false" />
+          <Property Name="Recipes_Per_Page" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Appliances_Recipes">
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="1" />
+          <End Role="Appliances_Used" Type="Self.Appliances_Used" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Principal>
+            <Dependent Role="Appliances_Used">
+              <PropertyRef Name="Recipe_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserRoles_AspNetRole">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserRoles_AspNetUser">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Recipes">
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="Recipe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dietary_Tags_Recipes">
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="1" />
+          <End Role="Dietary_Tags" Type="Self.Dietary_Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Principal>
+            <Dependent Role="Dietary_Tags">
+              <PropertyRef Name="Recipe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingredients_Recipes">
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="1" />
+          <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Principal>
+            <Dependent Role="Ingredients">
+              <PropertyRef Name="Recipe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liked_Recipes_Recipes">
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="1" />
+          <End Role="Liked_Recipes" Type="Self.Liked_Recipes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Principal>
+            <Dependent Role="Liked_Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liked_Recipes_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Liked_Recipes" Type="Self.Liked_Recipes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Liked_Recipes">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Options_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UserOptions" Type="Self.UserOptions" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserOptions">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pictures_Recipes">
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="1" />
+          <End Role="Pictures" Type="Self.Pictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="Recipe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recipes_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recipes">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="Reporter_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Questions_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Security_Questions" Type="Self.Security_Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Security_Questions">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThemeGallery_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="ThemeGallery" Type="Self.ThemeGallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThemeGallery">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Defined_Tags_Recipes">
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="1" />
+          <End Role="User_Defined_Tags" Type="Self.User_Defined_Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Principal>
+            <Dependent Role="User_Defined_Tags">
+              <PropertyRef Name="Recipe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="rdbModelStoreContainer">
+          <EntitySet Name="Appliances_Used" EntityType="Self.Appliances_Used" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppliancesLists" EntityType="Self.AppliancesLists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dietary_Tags" EntityType="Self.Dietary_Tags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IngredientsLists" EntityType="Self.IngredientsLists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invitations" EntityType="Self.Invitations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Liked_Recipes" EntityType="Self.Liked_Recipes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pictures" EntityType="Self.Pictures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recipes" EntityType="Self.Recipes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Security_Questions" EntityType="Self.Security_Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tagsLists" EntityType="Self.tagsLists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThemeGallery" EntityType="Self.ThemeGallery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Defined_Tags" EntityType="Self.User_Defined_Tags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserOptions" EntityType="Self.UserOptions" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Appliances_Recipes" Association="Self.FK_Appliances_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Appliances_Used" EntitySet="Appliances_Used" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetRole" Association="Self.FK_AspNetUserRoles_AspNetRole">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetUser" Association="Self.FK_AspNetUserRoles_AspNetUser">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Recipes" Association="Self.FK_Comments_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Users" Association="Self.FK_Comments_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dietary_Tags_Recipes" Association="Self.FK_Dietary_Tags_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Dietary_Tags" EntitySet="Dietary_Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingredients_Recipes" Association="Self.FK_Ingredients_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Ingredients" EntitySet="Ingredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liked_Recipes_Recipes" Association="Self.FK_Liked_Recipes_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Liked_Recipes" EntitySet="Liked_Recipes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liked_Recipes_Users" Association="Self.FK_Liked_Recipes_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Liked_Recipes" EntitySet="Liked_Recipes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Options_Users" Association="Self.FK_Options_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserOptions" EntitySet="UserOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pictures_Recipes" Association="Self.FK_Pictures_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recipes_Users" Association="Self.FK_Recipes_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Recipes" EntitySet="Recipes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Users" Association="Self.FK_Reports_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Questions_Users" Association="Self.FK_Security_Questions_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Security_Questions" EntitySet="Security_Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThemeGallery_Users" Association="Self.FK_ThemeGallery_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ThemeGallery" EntitySet="ThemeGallery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Defined_Tags_Recipes" Association="Self.FK_User_Defined_Tags_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="User_Defined_Tags" EntitySet="User_Defined_Tags" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="rdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Appliances_Used">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Appliance_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Recipe_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Appliance_Name_Search" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Recipe" Relationship="Self.FK_Appliances_Recipes" FromRole="Appliances_Used" ToRole="Recipes" />
+        </EntityType>
+        <EntityType Name="AppliancesList">
+          <Key>
+            <PropertyRef Name="Appliance_Id" />
+          </Key>
+          <Property Name="Appliance_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Appliance_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Occurances" Type="Int32" />
+          <Property Name="Start_Date" Type="DateTime" Precision="3" />
+          <Property Name="Permenant" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User_Picture_Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Account_Status" Type="Int32" />
+          <Property Name="Number_Of_Recipes_Per_Page" Type="Int32" />
+          <Property Name="Show_User_Comments" Type="Int32" />
+          <Property Name="User_Description" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="Roles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Banned" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ban_Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Users" FromRole="AspNetUsers" ToRole="Comments" />
+          <NavigationProperty Name="Liked_Recipes" Relationship="Self.FK_Liked_Recipes_Users" FromRole="AspNetUsers" ToRole="Liked_Recipes" />
+          <NavigationProperty Name="UserOption" Relationship="Self.FK_Options_Users" FromRole="AspNetUsers" ToRole="UserOptions" />
+          <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipes_Users" FromRole="AspNetUsers" ToRole="Recipes" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_Users" FromRole="AspNetUsers" ToRole="Reports" />
+          <NavigationProperty Name="Security_Questions" Relationship="Self.FK_Security_Questions_Users" FromRole="AspNetUsers" ToRole="Security_Questions" />
+          <NavigationProperty Name="ThemeGalleries" Relationship="Self.FK_ThemeGallery_Users" FromRole="AspNetUsers" ToRole="ThemeGallery" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Comment_ID" />
+          </Key>
+          <Property Name="Comment_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Recipe_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comment_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Comments_Users" FromRole="Comments" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Recipe" Relationship="Self.FK_Comments_Recipes" FromRole="Comments" ToRole="Recipes" />
+        </EntityType>
+        <EntityType Name="Dietary_Tags">
+          <Key>
+            <PropertyRef Name="Special_Tag_ID" />
+          </Key>
+          <Property Name="Special_Tag_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Recipe_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Special_Dietary_Tags" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Recipe" Relationship="Self.FK_Dietary_Tags_Recipes" FromRole="Dietary_Tags" ToRole="Recipes" />
+        </EntityType>
+        <EntityType Name="Ingredient">
+          <Key>
+            <PropertyRef Name="Recipe_Ingredient_ID" />
+          </Key>
+          <Property Name="Recipe_Ingredient_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Recipe_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ingredient_Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Measurement" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ingredient_Name_Search" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Recipe" Relationship="Self.FK_Ingredients_Recipes" FromRole="Ingredients" ToRole="Recipes" />
+        </EntityType>
+        <EntityType Name="IngredientsList">
+          <Key>
+            <PropertyRef Name="Ingredient_ID" />
+          </Key>
+          <Property Name="Ingredient_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ingredient_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invitation">
+          <Key>
+            <PropertyRef Name="Invite_Id" />
+          </Key>
+          <Property Name="Invite_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Code" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Liked_Recipes">
+          <Key>
+            <PropertyRef Name="Liked_Recipe_ID" />
+            <PropertyRef Name="Recipe_ID" />
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="Liked_Recipe_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Recipe_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_Liked" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Liked_Recipes_Users" FromRole="Liked_Recipes" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Recipe" Relationship="Self.FK_Liked_Recipes_Recipes" FromRole="Liked_Recipes" ToRole="Recipes" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="Picture_ID" />
+          </Key>
+          <Property Name="Picture_ID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Picture_Location" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Recipe_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Recipe" Relationship="Self.FK_Pictures_Recipes" FromRole="Pictures" ToRole="Recipes" />
+        </EntityType>
+        <EntityType Name="Recipe">
+          <Key>
+            <PropertyRef Name="Recipe_ID" />
+          </Key>
+          <Property Name="Recipe_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Recipe_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Recipe_Short_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Recipe_Description" Type="String" MaxLength="900" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cooking_Time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Recipe_Visibility" Type="Int32" Nullable="false" />
+          <Property Name="Date_Uploaded" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Number_Of_Views" Type="Int32" Nullable="false" />
+          <Property Name="Instructions" Type="String" MaxLength="700" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Display_Picture_Location" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Recipe_Search_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cooking_Time_Search_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Appliances_Used" Relationship="Self.FK_Appliances_Recipes" FromRole="Recipes" ToRole="Appliances_Used" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Recipes_Users" FromRole="Recipes" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Recipes" FromRole="Recipes" ToRole="Comments" />
+          <NavigationProperty Name="Dietary_Tags" Relationship="Self.FK_Dietary_Tags_Recipes" FromRole="Recipes" ToRole="Dietary_Tags" />
+          <NavigationProperty Name="Ingredients" Relationship="Self.FK_Ingredients_Recipes" FromRole="Recipes" ToRole="Ingredients" />
+          <NavigationProperty Name="Liked_Recipes" Relationship="Self.FK_Liked_Recipes_Recipes" FromRole="Recipes" ToRole="Liked_Recipes" />
+          <NavigationProperty Name="Pictures" Relationship="Self.FK_Pictures_Recipes" FromRole="Recipes" ToRole="Pictures" />
+          <NavigationProperty Name="User_Defined_Tags" Relationship="Self.FK_User_Defined_Tags_Recipes" FromRole="Recipes" ToRole="User_Defined_Tags" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="Report_Id" />
+          </Key>
+          <Property Name="Report_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment_Or_Recipe_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Reason_For_Report" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content_Creator_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Reporter_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content_Creator_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Reporter_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Recipe_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Recipe_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Reports_Users" FromRole="Reports" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="Security_Questions">
+          <Key>
+            <PropertyRef Name="Security_Question_ID" />
+          </Key>
+          <Property Name="Security_Question_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Security_Question" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Security_Answer" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Security_Questions_Users" FromRole="Security_Questions" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="tagsList">
+          <Key>
+            <PropertyRef Name="tag_id" />
+          </Key>
+          <Property Name="tag_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tag_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Occurances" Type="Int32" />
+          <Property Name="start_Date" Type="DateTime" Precision="3" />
+          <Property Name="permanant" Type="Int32" Nullable="false" />
+          <Property Name="AlphaTag" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ThemeGallery">
+          <Key>
+            <PropertyRef Name="Theme_Id" />
+          </Key>
+          <Property Name="Theme_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Custom_Theme" Type="Int32" Nullable="false" />
+          <Property Name="Text_Color" Type="String" MaxLength="21" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Background_Color" Type="String" MaxLength="21" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contrast_Box_Background_Color" Type="String" MaxLength="21" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Background_Image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Background_Box_Color" Type="String" MaxLength="21" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Background_Box_Opacity" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Background_Color_Opacity" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contrast_Box_Background_Color_Opacity" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Background_Image_Color_Or_Theme" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Input_Color" Type="String" MaxLength="21" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Input_Opacity" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Permenant" Type="Int32" Nullable="false" />
+          <Property Name="Hr_Color" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Logo_Facebook" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Logo_Twitter" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Logo_Reddit" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Logo_BitBucket" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Logo_Main" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Logo_Info" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Theme_Icon_Path" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Logo_Save" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Logo_Garbage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Arrow_Left" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Arrow_Right" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Arrow_Up" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Arrow_Down" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_ThemeGallery_Users" FromRole="ThemeGallery" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="User_Defined_Tags">
+          <Key>
+            <PropertyRef Name="Tag_ID" />
+          </Key>
+          <Property Name="Tag_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Recipe_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User_Defined_Tag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Defined_Tag_Search" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Recipe" Relationship="Self.FK_User_Defined_Tags_Recipes" FromRole="User_Defined_Tags" ToRole="Recipes" />
+        </EntityType>
+        <EntityType Name="UserOption">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Search_Visibility" Type="Int32" Nullable="false" />
+          <Property Name="Recipes_Per_Page" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Options_Users" FromRole="UserOptions" ToRole="AspNetUsers" />
+        </EntityType>
+        <Association Name="FK_Appliances_Recipes">
+          <End Role="Recipes" Type="Self.Recipe" Multiplicity="1" />
+          <End Role="Appliances_Used" Type="Self.Appliances_Used" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Principal>
+            <Dependent Role="Appliances_Used">
+              <PropertyRef Name="Recipe_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liked_Recipes_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="Liked_Recipes" Type="Self.Liked_Recipes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Liked_Recipes">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Options_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="UserOptions" Type="Self.UserOption" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserOptions">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recipes_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="Recipes" Type="Self.Recipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recipes">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="Reporter_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Questions_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Security_Questions" Type="Self.Security_Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Security_Questions">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThemeGallery_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="ThemeGallery" Type="Self.ThemeGallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThemeGallery">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Recipes">
+          <End Role="Recipes" Type="Self.Recipe" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="Recipe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dietary_Tags_Recipes">
+          <End Role="Recipes" Type="Self.Recipe" Multiplicity="1" />
+          <End Role="Dietary_Tags" Type="Self.Dietary_Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Principal>
+            <Dependent Role="Dietary_Tags">
+              <PropertyRef Name="Recipe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingredients_Recipes">
+          <End Role="Recipes" Type="Self.Recipe" Multiplicity="1" />
+          <End Role="Ingredients" Type="Self.Ingredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Principal>
+            <Dependent Role="Ingredients">
+              <PropertyRef Name="Recipe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liked_Recipes_Recipes">
+          <End Role="Recipes" Type="Self.Recipe" Multiplicity="1" />
+          <End Role="Liked_Recipes" Type="Self.Liked_Recipes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Principal>
+            <Dependent Role="Liked_Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pictures_Recipes">
+          <End Role="Recipes" Type="Self.Recipe" Multiplicity="1" />
+          <End Role="Pictures" Type="Self.Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="Recipe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Defined_Tags_Recipes">
+          <End Role="Recipes" Type="Self.Recipe" Multiplicity="1" />
+          <End Role="User_Defined_Tags" Type="Self.User_Defined_Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="Recipe_ID" />
+            </Principal>
+            <Dependent Role="User_Defined_Tags">
+              <PropertyRef Name="Recipe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="rdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Appliances_Used" EntityType="Self.Appliances_Used" />
+          <EntitySet Name="AppliancesLists" EntityType="Self.AppliancesList" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Dietary_Tags" EntityType="Self.Dietary_Tags" />
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredient" />
+          <EntitySet Name="IngredientsLists" EntityType="Self.IngredientsList" />
+          <EntitySet Name="Invitations" EntityType="Self.Invitation" />
+          <EntitySet Name="Liked_Recipes" EntityType="Self.Liked_Recipes" />
+          <EntitySet Name="Pictures" EntityType="Self.Picture" />
+          <EntitySet Name="Recipes" EntityType="Self.Recipe" />
+          <EntitySet Name="Reports" EntityType="Self.Report" />
+          <EntitySet Name="Security_Questions" EntityType="Self.Security_Questions" />
+          <EntitySet Name="tagsLists" EntityType="Self.tagsList" />
+          <EntitySet Name="ThemeGalleries" EntityType="Self.ThemeGallery" />
+          <EntitySet Name="User_Defined_Tags" EntityType="Self.User_Defined_Tags" />
+          <EntitySet Name="UserOptions" EntityType="Self.UserOption" />
+          <AssociationSet Name="FK_Appliances_Recipes" Association="Self.FK_Appliances_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Appliances_Used" EntitySet="Appliances_Used" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Users" Association="Self.FK_Comments_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liked_Recipes_Users" Association="Self.FK_Liked_Recipes_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Liked_Recipes" EntitySet="Liked_Recipes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Options_Users" Association="Self.FK_Options_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserOptions" EntitySet="UserOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recipes_Users" Association="Self.FK_Recipes_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Recipes" EntitySet="Recipes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Users" Association="Self.FK_Reports_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Questions_Users" Association="Self.FK_Security_Questions_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Security_Questions" EntitySet="Security_Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThemeGallery_Users" Association="Self.FK_ThemeGallery_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ThemeGallery" EntitySet="ThemeGalleries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Recipes" Association="Self.FK_Comments_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dietary_Tags_Recipes" Association="Self.FK_Dietary_Tags_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Dietary_Tags" EntitySet="Dietary_Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingredients_Recipes" Association="Self.FK_Ingredients_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Ingredients" EntitySet="Ingredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liked_Recipes_Recipes" Association="Self.FK_Liked_Recipes_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Liked_Recipes" EntitySet="Liked_Recipes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pictures_Recipes" Association="Self.FK_Pictures_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Defined_Tags_Recipes" Association="Self.FK_User_Defined_Tags_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="User_Defined_Tags" EntitySet="User_Defined_Tags" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="rdbModelStoreContainer" CdmEntityContainer="rdbEntities">
+          <EntitySetMapping Name="Appliances_Used">
+            <EntityTypeMapping TypeName="rdbModel.Appliances_Used">
+              <MappingFragment StoreEntitySet="Appliances_Used">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Appliance_Name" ColumnName="Appliance_Name" />
+                <ScalarProperty Name="Recipe_Id" ColumnName="Recipe_Id" />
+                <ScalarProperty Name="Appliance_Name_Search" ColumnName="Appliance_Name_Search" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppliancesLists">
+            <EntityTypeMapping TypeName="rdbModel.AppliancesList">
+              <MappingFragment StoreEntitySet="AppliancesLists">
+                <ScalarProperty Name="Appliance_Id" ColumnName="Appliance_Id" />
+                <ScalarProperty Name="Appliance_Name" ColumnName="Appliance_Name" />
+                <ScalarProperty Name="Occurances" ColumnName="Occurances" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+                <ScalarProperty Name="Permenant" ColumnName="Permenant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="rdbModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="rdbModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="rdbModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="rdbModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="User_Picture_Path" ColumnName="User_Picture_Path" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Account_Status" ColumnName="Account_Status" />
+                <ScalarProperty Name="Number_Of_Recipes_Per_Page" ColumnName="Number_Of_Recipes_Per_Page" />
+                <ScalarProperty Name="Show_User_Comments" ColumnName="Show_User_Comments" />
+                <ScalarProperty Name="User_Description" ColumnName="User_Description" />
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
+                <ScalarProperty Name="Banned" ColumnName="Banned" />
+                <ScalarProperty Name="Ban_Count" ColumnName="Ban_Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="rdbModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="C__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="rdbModel.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="Comment_ID" ColumnName="Comment_ID" />
+                <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+                <ScalarProperty Name="Comment1" ColumnName="Comment" />
+                <ScalarProperty Name="Comment_Date" ColumnName="Comment_Date" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dietary_Tags">
+            <EntityTypeMapping TypeName="rdbModel.Dietary_Tags">
+              <MappingFragment StoreEntitySet="Dietary_Tags">
+                <ScalarProperty Name="Special_Tag_ID" ColumnName="Special_Tag_ID" />
+                <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+                <ScalarProperty Name="Special_Dietary_Tags" ColumnName="Special_Dietary_Tags" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ingredients">
+            <EntityTypeMapping TypeName="rdbModel.Ingredient">
+              <MappingFragment StoreEntitySet="Ingredients">
+                <ScalarProperty Name="Recipe_Ingredient_ID" ColumnName="Recipe_Ingredient_ID" />
+                <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+                <ScalarProperty Name="Ingredient_Name" ColumnName="Ingredient_Name" />
+                <ScalarProperty Name="Measurement" ColumnName="Measurement" />
+                <ScalarProperty Name="Ingredient_Name_Search" ColumnName="Ingredient_Name_Search" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IngredientsLists">
+            <EntityTypeMapping TypeName="rdbModel.IngredientsList">
+              <MappingFragment StoreEntitySet="IngredientsLists">
+                <ScalarProperty Name="Ingredient_ID" ColumnName="Ingredient_ID" />
+                <ScalarProperty Name="Ingredient_Name" ColumnName="Ingredient_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invitations">
+            <EntityTypeMapping TypeName="rdbModel.Invitation">
+              <MappingFragment StoreEntitySet="Invitations">
+                <ScalarProperty Name="Invite_Id" ColumnName="Invite_Id" />
+                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Liked_Recipes">
+            <EntityTypeMapping TypeName="rdbModel.Liked_Recipes">
+              <MappingFragment StoreEntitySet="Liked_Recipes">
+                <ScalarProperty Name="Liked_Recipe_ID" ColumnName="Liked_Recipe_ID" />
+                <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Date_Liked" ColumnName="Date_Liked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pictures">
+            <EntityTypeMapping TypeName="rdbModel.Picture">
+              <MappingFragment StoreEntitySet="Pictures">
+                <ScalarProperty Name="Picture_ID" ColumnName="Picture_ID" />
+                <ScalarProperty Name="Picture_Location" ColumnName="Picture_Location" />
+                <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recipes">
+            <EntityTypeMapping TypeName="rdbModel.Recipe">
+              <MappingFragment StoreEntitySet="Recipes">
+                <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+                <ScalarProperty Name="Recipe_Name" ColumnName="Recipe_Name" />
+                <ScalarProperty Name="Recipe_Short_Description" ColumnName="Recipe_Short_Description" />
+                <ScalarProperty Name="Recipe_Description" ColumnName="Recipe_Description" />
+                <ScalarProperty Name="Cooking_Time" ColumnName="Cooking_Time" />
+                <ScalarProperty Name="Recipe_Visibility" ColumnName="Recipe_Visibility" />
+                <ScalarProperty Name="Date_Uploaded" ColumnName="Date_Uploaded" />
+                <ScalarProperty Name="Number_Of_Views" ColumnName="Number_Of_Views" />
+                <ScalarProperty Name="Instructions" ColumnName="Instructions" />
+                <ScalarProperty Name="Display_Picture_Location" ColumnName="Display_Picture_Location" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Recipe_Search_Name" ColumnName="Recipe_Search_Name" />
+                <ScalarProperty Name="Cooking_Time_Search_Name" ColumnName="Cooking_Time_Search_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reports">
+            <EntityTypeMapping TypeName="rdbModel.Report">
+              <MappingFragment StoreEntitySet="Reports">
+                <ScalarProperty Name="Report_Id" ColumnName="Report_Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Comment_Or_Recipe_Id" ColumnName="Comment_Or_Recipe_Id" />
+                <ScalarProperty Name="Reason_For_Report" ColumnName="Reason_For_Report" />
+                <ScalarProperty Name="Content_Creator_Name" ColumnName="Content_Creator_Name" />
+                <ScalarProperty Name="Reporter_Name" ColumnName="Reporter_Name" />
+                <ScalarProperty Name="Content_Creator_Id" ColumnName="Content_Creator_Id" />
+                <ScalarProperty Name="Reporter_Id" ColumnName="Reporter_Id" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Recipe_Name" ColumnName="Recipe_Name" />
+                <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+                <ScalarProperty Name="Comment_ID" ColumnName="Comment_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Security_Questions">
+            <EntityTypeMapping TypeName="rdbModel.Security_Questions">
+              <MappingFragment StoreEntitySet="Security_Questions">
+                <ScalarProperty Name="Security_Question_ID" ColumnName="Security_Question_ID" />
+                <ScalarProperty Name="Security_Question" ColumnName="Security_Question" />
+                <ScalarProperty Name="Security_Answer" ColumnName="Security_Answer" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tagsLists">
+            <EntityTypeMapping TypeName="rdbModel.tagsList">
+              <MappingFragment StoreEntitySet="tagsLists">
+                <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+                <ScalarProperty Name="tag_Name" ColumnName="tag_Name" />
+                <ScalarProperty Name="Occurances" ColumnName="Occurances" />
+                <ScalarProperty Name="start_Date" ColumnName="start_Date" />
+                <ScalarProperty Name="permanant" ColumnName="permanant" />
+                <ScalarProperty Name="AlphaTag" ColumnName="AlphaTag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThemeGalleries">
+            <EntityTypeMapping TypeName="rdbModel.ThemeGallery">
+              <MappingFragment StoreEntitySet="ThemeGallery">
+                <ScalarProperty Name="Theme_Id" ColumnName="Theme_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="User_Custom_Theme" ColumnName="User_Custom_Theme" />
+                <ScalarProperty Name="Text_Color" ColumnName="Text_Color" />
+                <ScalarProperty Name="Background_Color" ColumnName="Background_Color" />
+                <ScalarProperty Name="Contrast_Box_Background_Color" ColumnName="Contrast_Box_Background_Color" />
+                <ScalarProperty Name="Background_Image" ColumnName="Background_Image" />
+                <ScalarProperty Name="Background_Box_Color" ColumnName="Background_Box_Color" />
+                <ScalarProperty Name="Background_Box_Opacity" ColumnName="Background_Box_Opacity" />
+                <ScalarProperty Name="Background_Color_Opacity" ColumnName="Background_Color_Opacity" />
+                <ScalarProperty Name="Contrast_Box_Background_Color_Opacity" ColumnName="Contrast_Box_Background_Color_Opacity" />
+                <ScalarProperty Name="Background_Image_Color_Or_Theme" ColumnName="Background_Image_Color_Or_Theme" />
+                <ScalarProperty Name="Input_Color" ColumnName="Input_Color" />
+                <ScalarProperty Name="Input_Opacity" ColumnName="Input_Opacity" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Permenant" ColumnName="Permenant" />
+                <ScalarProperty Name="Hr_Color" ColumnName="Hr_Color" />
+                <ScalarProperty Name="Logo_Facebook" ColumnName="Logo_Facebook" />
+                <ScalarProperty Name="Logo_Twitter" ColumnName="Logo_Twitter" />
+                <ScalarProperty Name="Logo_Reddit" ColumnName="Logo_Reddit" />
+                <ScalarProperty Name="Logo_BitBucket" ColumnName="Logo_BitBucket" />
+                <ScalarProperty Name="Logo_Main" ColumnName="Logo_Main" />
+                <ScalarProperty Name="Logo_Info" ColumnName="Logo_Info" />
+                <ScalarProperty Name="Theme_Icon_Path" ColumnName="Theme_Icon_Path" />
+                <ScalarProperty Name="Logo_Save" ColumnName="Logo_Save" />
+                <ScalarProperty Name="Logo_Garbage" ColumnName="Logo_Garbage" />
+                <ScalarProperty Name="Arrow_Left" ColumnName="Arrow_Left" />
+                <ScalarProperty Name="Arrow_Right" ColumnName="Arrow_Right" />
+                <ScalarProperty Name="Arrow_Up" ColumnName="Arrow_Up" />
+                <ScalarProperty Name="Arrow_Down" ColumnName="Arrow_Down" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Defined_Tags">
+            <EntityTypeMapping TypeName="rdbModel.User_Defined_Tags">
+              <MappingFragment StoreEntitySet="User_Defined_Tags">
+                <ScalarProperty Name="Tag_ID" ColumnName="Tag_ID" />
+                <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+                <ScalarProperty Name="User_Defined_Tag" ColumnName="User_Defined_Tag" />
+                <ScalarProperty Name="User_Defined_Tag_Search" ColumnName="User_Defined_Tag_Search" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserOptions">
+            <EntityTypeMapping TypeName="rdbModel.UserOption">
+              <MappingFragment StoreEntitySet="UserOptions">
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Search_Visibility" ColumnName="Search_Visibility" />
+                <ScalarProperty Name="Recipes_Per_Page" ColumnName="Recipes_Per_Page" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="rdbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
