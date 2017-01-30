@@ -25,7 +25,7 @@ namespace MRMV2.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("MyConnString1", throwIfV1Schema: false)
         {
         }
 

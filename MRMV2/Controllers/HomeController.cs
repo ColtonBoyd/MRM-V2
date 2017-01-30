@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using MRMV2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,8 @@ namespace MRMV2.Controllers
             if (isAdmin())
                 return RedirectToAction("Index", "Admin");
 
+            LandingPageModel lp = new LandingPageModel();
+
             try
             {
                 //Set the viewbag message to an empty string to ensure that any messages to be displayed on the landing page only display once
@@ -45,14 +48,20 @@ namespace MRMV2.Controllers
                     }
                 }
                 Session["section"] = "";
-                //Get the top 4 viewed recipes on the website to display on the front page
-                var getRecipess = (from rec in db.Recipes where rec.Recipe_Visibility == 1 orderby rec.Number_Of_Views descending select rec).Take(4);
-                ViewBag.Images = getRecipess;
+
+                
+                //Get the top 7 viewed recipes on the website to display on the front page
+                var getHotRecipesFromDB = (from rec in db.Recipes where rec.Recipe_Visibility == 1 orderby rec.Number_Of_Views descending select rec).Take(7).ToList();
+                lp.getHotRecipes = getHotRecipesFromDB;
+
+                //Get new Recipes
+                var getNewRecipesFromDB = (from rec in db.Recipes where rec.Recipe_Visibility == 1 orderby rec.Date_Uploaded descending select rec).Take(10).ToList();
+                lp.getNewRecipes= getNewRecipesFromDB;
                 Session["messageExists"] = false;
                 Session["message"] = "";
             }
             catch (Exception) { }
-            return View();
+            return View(lp);
 
 
 

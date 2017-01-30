@@ -1,2 +1,10 @@
-﻿<div id="recentSection"></div>
+﻿@model MRMV2.Models.LandingPageModel
+
+
+<div id="recentSection">
+    @foreach (var item in Model.getNewRecipes)
+    {
+        <div class="recentRecipeImg"><img onclick="window.location.href='@Url.Action("RecipeID", "Recipes", new {id = item.Recipe_ID})';" src="@item.Display_Picture_Location" /> <a class='recipeTitle' style='color:#428bca;' href='@Url.Action("RecipeID", "Recipes", new {id = item.Recipe_ID })'>@item.Recipe_Name</a></div>
+    }
+</div>
 

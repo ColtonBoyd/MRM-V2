@@ -54,6 +54,15 @@
                 right: 42.4%;
             }
 
+             #navHead a:hover
+             {
+                 text-decoration:none;
+             }
+
+            #navHead img{
+                width:75px;
+                height:75px;
+            }
 
 
     </style>
@@ -65,8 +74,11 @@
     <div class="masthead clearfix" id="topBar">
         <div class="container">
             <div class="navbar-header" id="navHead">
-
-                @Html.ActionLink("My Recipe Manager", "Index", "Home", new { area = "" }, new { @class = "navbar-brand Logo" })
+                <a href="~/">
+                    
+                    <img src="~/Icons/MRMLogo.png" />
+                    <b>My Recipe Manager</b>
+                </a>
             </div>
 
             @Html.Partial("_LoginPartial")

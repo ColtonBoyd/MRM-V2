@@ -7,7 +7,10 @@ namespace MRMV2.Models
 {
     public class LandingPageModel
     {
-        public List<Recipe> getRecipes { get; set; }
-        public Users getUser { get; set; }
+        public List<Recipe> getHotRecipes { get; set; }
+        public List<Recipe> getNewRecipes { get; set; }
+
+        //Comment object has all fields required for a news item
+        public List<Comment> getNews { get; set; }
     }
 }

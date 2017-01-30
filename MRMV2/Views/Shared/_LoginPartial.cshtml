@@ -1,16 +1,67 @@
 ﻿@using Microsoft.AspNet.Identity
+
+<style type="text/css">
+    #navBar a {
+        position: relative;
+        display: block;
+        padding: 10px 15px 10px 15px;
+        text-decoration: none;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        cursor: pointer;
+    }
+
+    .dropdown-menu a {
+        color: #000000 !important;
+    }
+
+        .dropdown-menu a:hover {
+            font-weight: bold;
+        }
+
+    #toast {
+        min-height: 0px !important;
+        text-align: center !important;
+        color: white !important;
+    }
+
+
+    .toastStyle {
+        border-radius: 20px !important;
+        top: 85% !important;
+        min-height: 0px !important;
+        padding: 0px !important;
+        position: fixed;
+    }
+</style>
+
+
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+
+                <div id="navBar" class="dropdown">
+                    <a class="dropdown-toggle" id="userDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <img style="width:85px; height:60px" />   Welcome @User.Identity.GetUserName()<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userDropDown">
+                        <li>@Html.ActionLink("Search", "Search", "Home", routeValues: null, htmlAttributes: null)</li>
+                        <li>@Html.ActionLink("Add A Recipe", "AddRecipe", "Recipes", routeValues: null, htmlAttributes: new { })</li>
+                        <li>@Html.ActionLink("User Account", "Profile", "User", new { id = "" }, htmlAttributes: new { id = "" })</li>
+                        <li>@Html.ActionLink("User Options", "Options", "User", routeValues: null, htmlAttributes: new { })</li>
+                        <li>@Html.ActionLink("Manage Account", "Index", "Manage", routeValues: null, htmlAttributes: new { })</li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
     }
 }
 else
