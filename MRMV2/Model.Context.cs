@@ -46,5 +46,6 @@ namespace MRMV2
         public virtual DbSet<ThemeGallery> ThemeGalleries { get; set; }
         public virtual DbSet<User_Defined_Tags> User_Defined_Tags { get; set; }
         public virtual DbSet<UserOption> UserOptions { get; set; }
+        public virtual DbSet<News> News { get; set; }
     }
 }

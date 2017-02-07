@@ -142,6 +142,15 @@
     <Property Name="User_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="Date_Liked" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="News" Type="varchar" MaxLength="700" Nullable="false" />
+    <Property Name="UploadDate" Type="date" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
   <EntityType Name="Pictures">
     <Key>
       <PropertyRef Name="Picture_ID" />
@@ -492,6 +501,7 @@
     <EntitySet Name="IngredientsLists" EntityType="Self.IngredientsLists" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Invitations" EntityType="Self.Invitations" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Liked_Recipes" EntityType="Self.Liked_Recipes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pictures" EntityType="Self.Pictures" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Recipes" EntityType="Self.Recipes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />

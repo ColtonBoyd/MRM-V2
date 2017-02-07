@@ -11,6 +11,6 @@ namespace MRMV2.Models
         public List<Recipe> getNewRecipes { get; set; }
 
         //Comment object has all fields required for a news item
-        public List<Comment> getNews { get; set; }
+        //public List<NewsModel> getNews { get; set; }
     }
 }

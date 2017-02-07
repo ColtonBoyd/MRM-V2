@@ -43,6 +43,7 @@
         <AssociationConnector Association="rdbModel.FK_Pictures_Recipes" ManuallyRouted="false" />
         <AssociationConnector Association="rdbModel.FK_User_Defined_Tags_Recipes" ManuallyRouted="false" />
         <AssociationConnector Association="rdbModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="rdbModel.News" Width="1.5" PointX="0.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -573,5 +573,15 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="News" EntityType="rdbModel.News" />
   </EntityContainer>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="News1" Type="String" Nullable="false" MaxLength="700" FixedLength="false" Unicode="false" />
+    <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

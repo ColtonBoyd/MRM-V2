@@ -1,1 +1,25 @@
-﻿<div id="newsSection"></div>
+﻿@model MRMV2.Models.LandingPageModel
+
+@*<div id="newsPanel">
+    @foreach (var item in Model.getNews)
+    {
+        
+            <div class="newsItem">
+                <img class="uploaderImage" src="../../ProfilePicture/@item.UserPicturePath" />
+                <span class="uploaderProfile" onclick="window.location.href='@Url.Action("Profile", "User", new {id = item.UserID})';">
+                    
+                    @item.UserName
+                    
+                </span>
+                <br />
+                <div class="newsSection">
+                    @item.News1
+                </div>
+            </div>
+            
+            
+        
+    }
+</div>*@
+
+

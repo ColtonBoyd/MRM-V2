@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en-us">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,10 @@
     <script src="~/Scripts/jquery.cycle2.js"></script>
     <script src="~/Scripts/jquery.cycle2.tile.js"></script>
     <script src="~/Scripts/jquery.cycle2.caption2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
+    
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
@@ -19,7 +23,7 @@
         }
 
 
-      
+
 
 
         .Logo {
@@ -54,17 +58,14 @@
                 right: 42.4%;
             }
 
-             #navHead a:hover
-             {
-                 text-decoration:none;
-             }
+        #navHead a:hover {
+            text-decoration: none;
+        }
 
-            #navHead img{
-                width:75px;
-                height:75px;
-            }
-
-
+        #navHead img {
+            width: 75px;
+            height: 75px;
+        }
     </style>
 </head>
 
@@ -75,7 +76,7 @@
         <div class="container">
             <div class="navbar-header" id="navHead">
                 <a href="~/">
-                    
+
                     <img src="~/Icons/MRMLogo.png" />
                     <b>My Recipe Manager</b>
                 </a>
@@ -103,7 +104,7 @@
 
 
 <script type="text/javascript">
-    
+
     $(document).ready(function () {
 
         $("#Load").css("visibility", "hidden");
@@ -115,9 +116,9 @@
 
     @*$(window).load(function () {
 
-        
+
         //Load all user custom setting, If there is not a user signed in a default value is passed.
-         
+
         var backgroundImageRaw = '@Html.Action("getBackground", "User")';
         var backgroundImage = backgroundImageRaw.split('!!!###');
 

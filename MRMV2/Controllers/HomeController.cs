@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace MRMV2.Controllers
 {
@@ -49,16 +50,22 @@ namespace MRMV2.Controllers
                 }
                 Session["section"] = "";
 
-                
+
                 //Get the top 7 viewed recipes on the website to display on the front page
                 var getHotRecipesFromDB = (from rec in db.Recipes where rec.Recipe_Visibility == 1 orderby rec.Number_Of_Views descending select rec).Take(7).ToList();
                 lp.getHotRecipes = getHotRecipesFromDB;
 
                 //Get new Recipes
                 var getNewRecipesFromDB = (from rec in db.Recipes where rec.Recipe_Visibility == 1 orderby rec.Date_Uploaded descending select rec).Take(10).ToList();
-                lp.getNewRecipes= getNewRecipesFromDB;
+                lp.getNewRecipes = getNewRecipesFromDB;
+
+
+
+
                 Session["messageExists"] = false;
                 Session["message"] = "";
+
+
             }
             catch (Exception) { }
             return View(lp);
@@ -67,6 +74,36 @@ namespace MRMV2.Controllers
 
         }
 
+        public ActionResult getNews()
+        {
+            //Get News
+            var getNewsFromDB = (from news in db.News join user in db.AspNetUsers on news.UserID equals user.Id orderby news.UploadDate ascending select new { News = news, UserInfo = user }).Take(10).ToList();
+            List<NewsModel> getNewsFromDBList = new List<NewsModel>();
+            foreach (var item in getNewsFromDB)
+            {
+                getNewsFromDBList.Add(new NewsModel() { News1 = item.News.News1, UploadDate = item.News.UploadDate, UserID = item.News.UserID, UserName = item.UserInfo.UserName, UserPicturePath = "../../ProfilePicture/"+item.UserInfo.User_Picture_Path, Id = item.News.Id });
+                }
+
+            return Json(getNewsFromDBList, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        [OutputCache(Location = OutputCacheLocation.None)]
+        public ActionResult Comments()
+        {
+
+            //Get News
+            var getNewsFromDB = (from news in db.News join user in db.AspNetUsers on news.UserID equals user.Id orderby news.UploadDate ascending select new { News = news, UserInfo = user }).Take(10).ToList();
+            List<NewsModel> getNewsFromDBList = new List<NewsModel>();
+            foreach (var item in getNewsFromDB)
+            {
+                getNewsFromDBList.Add(new NewsModel() { News1 = item.News.News1, UploadDate = item.News.UploadDate, UserID = item.News.UserID, UserName = item.UserInfo.UserName, UserPicturePath = item.UserInfo.User_Picture_Path });
+            }
+
+            
+            return Json(getNewsFromDBList, JsonRequestBehavior.AllowGet);
+        }
 
         /// <summary>
         /// Check if the current user is an admin
